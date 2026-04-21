@@ -414,7 +414,7 @@ body {
   <span>{p}</span>
 </div>'''
 
-    # ━━━ SLIDE 1: COVER ━━━
+    # ━━━ SLIDE 1: COVER (simplified) ━━━
     html += f"""
 <div class="slide cover-slide">
   <div class="accent-bar" style="background:linear-gradient(90deg,#F0A671,#DC8766,#B07256,#966D5E,#7A4033);"></div>
@@ -425,78 +425,267 @@ body {
       月面基地での生活課題と、それに応える世界中の技術・研究・プロジェクトを<br>
       10カテゴリに分類し、月面基地モジュールとの関連を整理したデータベースレポート
     </div>
-    <div class="cover-stats">
-      <div class="cover-stat"><div class="cover-stat-num">{len(entries)}</div><div class="cover-stat-label">エントリ</div></div>
-      <div class="cover-stat"><div class="cover-stat-num">{len(orgs)}</div><div class="cover-stat-label">組織</div></div>
-      <div class="cover-stat"><div class="cover-stat-num">10</div><div class="cover-stat-label">カテゴリ</div></div>
-      <div class="cover-stat"><div class="cover-stat-num">{len(challenges)}</div><div class="cover-stat-label">課題</div></div>
-      <div class="cover-stat"><div class="cover-stat-num">8</div><div class="cover-stat-label">モジュール</div></div>
+    <div class="cover-meta" style="margin-top:10mm;">
+      NPO法人ミラツク / MIRA TUKU<br>
+      {today}
     </div>
-    <div class="cover-meta">{today} &nbsp;|&nbsp; NPO法人ミラツク &nbsp;|&nbsp; JAXA「Space Life on the Moon」準拠</div>
   </div>
 </div>
 """
     page += 1
 
-    # ━━━ SLIDE 2: OVERVIEW / STATS ━━━
-    org_count = {}
-    for e in entries:
-        org = e.get('source_org', 'Unknown') or 'Unknown'
-        if 'NASA' in org: org = 'NASA'
-        elif 'ESA' in org or 'European' in org: org = 'ESA'
-        elif 'JAXA' in org or 'Japan Aerospace' in org: org = 'JAXA'
-        elif 'CNSA' in org or 'Chinese' in org: org = 'CNSA'
-        org_count[org] = org_count.get(org, 0) + 1
-    top_orgs = sorted(org_count.items(), key=lambda x: -x[1])[:8]
-    max_org = top_orgs[0][1] if top_orgs else 1
-    max_trl = max(trl_dist.values()) if trl_dist else 1
-
+    # ━━━ SLIDE 2: LUNAR ENVIRONMENT ━━━
     html += f"""
 <div class="slide">
   <div class="accent-bar" style="background:#783c28;"></div>
   <div class="slide-inner">
-    <div class="content-header"><h2 style="color:#783c28;">統計サマリー</h2></div>
-
-    <div class="kpi-row">
-      <div class="kpi-box"><div class="kpi-num">{len(entries)}</div><div class="kpi-label">エントリ総数</div></div>
-      <div class="kpi-box"><div class="kpi-num">{len(orgs)}</div><div class="kpi-label">組織数</div></div>
-      <div class="kpi-box"><div class="kpi-num">10</div><div class="kpi-label">生活課題カテゴリ</div></div>
-      <div class="kpi-box"><div class="kpi-num">{len(challenges)}</div><div class="kpi-label">月面環境課題</div></div>
-      <div class="kpi-box"><div class="kpi-num">8</div><div class="kpi-label">基地モジュール</div></div>
+    <div class="content-header"><h2 style="color:#783c28;">月面環境</h2><span class="content-sub">人が暮らすために知るべき月の条件</span></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4mm; flex:1;">
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:4mm; background:#fdfbf9;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:2mm;">基本物理環境</div>
+          <table style="width:100%; font-size:8pt; border-collapse:collapse;">
+            <tr><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5; width:35%;"><strong>重力</strong></td><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;">地球の1/6（約1.62 m/s²）</td></tr>
+            <tr><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;"><strong>大気</strong></td><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;">ほぼ真空（10⁻¹² Pa）</td></tr>
+            <tr><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;"><strong>日中温度</strong></td><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;">+127°C（14.75日間継続）</td></tr>
+            <tr><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;"><strong>夜間温度</strong></td><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;">-173°C（14.75日間継続）</td></tr>
+            <tr><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;"><strong>1日の長さ</strong></td><td style="padding:1.5mm 0; border-bottom:1px solid #f0ebe5;">29.5地球日（約708時間）</td></tr>
+            <tr><td style="padding:1.5mm 0;"><strong>地球との距離</strong></td><td style="padding:1.5mm 0;">約384,400km（通信遅延 片道1.3秒）</td></tr>
+          </table>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:4mm; background:#fdfbf9;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:2mm;">水氷資源</div>
+          <p style="font-size:8pt; line-height:1.6; color:#4a4a4a;">
+            月の南極・北極の永久影地帯に数百万トンの水氷が賦存すると推定されている。
+            飲料水・農業用水・ロケット燃料（水素+酸素）の原料として、月面基地の立地を決める最重要資源。
+            NASAのVIPERローバやPRIME-1実験で採掘技術の実証が進む。
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #DC8766; border-radius:2.5mm; padding:4mm; background:#DC876608;">
+          <div style="font-size:10pt; font-weight:700; color:#DC8766; margin-bottom:2mm;">宇宙放射線</div>
+          <p style="font-size:8pt; line-height:1.6; color:#4a4a4a;">
+            月面には地球のような磁気圏が存在せず、銀河宇宙線（GCR）と太陽粒子線（SPE）が直接到達する。
+            長期滞在では発がんリスク・中枢神経障害が懸念され、居住モジュールの遮蔽設計やレゴリスを利用した
+            シールド構造が不可欠。太陽フレア時は緊急退避が必要。
+          </p>
+        </div>
+        <div style="border:1px solid #B07256; border-radius:2.5mm; padding:4mm; background:#B0725608;">
+          <div style="font-size:10pt; font-weight:700; color:#B07256; margin-bottom:2mm;">月面レゴリス（ダスト）</div>
+          <p style="font-size:8pt; line-height:1.6; color:#4a4a4a;">
+            月面を覆う微細な砂塵は非常に鋭角で、静電気により帯電しあらゆる表面に付着する。
+            ナノスケール鉄が活性酸素を生成し、吸入すると肺・中枢神経に障害をもたらすリスクがある。
+            アポロ飛行士も鼻腔充血やくしゃみを経験した。推奨曝露限界は0.3 mg/m³。
+          </p>
+        </div>
+        <div style="border:1px solid #966D5E; border-radius:2.5mm; padding:4mm; background:#966D5E08;">
+          <div style="font-size:10pt; font-weight:700; color:#966D5E; margin-bottom:2mm;">心理的課題</div>
+          <p style="font-size:8pt; line-height:1.6; color:#4a4a4a;">
+            閉鎖空間での長期滞在による心理的負荷。対人摩擦、単調さ、地球との隔絶感、
+            概日リズムの乱れ（29.5日周期）が重なり、メンタルヘルスの維持が生命維持と同等に重要となる。
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+  {footer(page)}
+</div>
+"""
+    page += 1
 
-    <div class="stats-grid">
-      <div class="stats-block">
-        <h3>技術成熟度（TRL）分布</h3>
+    # ━━━ SLIDE 3: NATIONAL ROADMAPS ━━━
+    html += f"""
+<div class="slide">
+  <div class="accent-bar" style="background:#783c28;"></div>
+  <div class="slide-inner">
+    <div class="content-header"><h2 style="color:#783c28;">各国の月面基地ロードマップ</h2></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; flex:1;">
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">米国 — Artemis計画</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>2026</strong> Artemis II 月周回飛行（完了）</div>
+            <div style="margin-bottom:1mm;"><strong>2027</strong> Artemis III HLS軌道テスト</div>
+            <div style="margin-bottom:1mm;"><strong>2028</strong> Artemis IV <span style="color:#DC8766;font-weight:700;">初有人月面着陸</span></div>
+            <div style="margin-bottom:1mm;"><strong>2029-36</strong> 月面地表基地建設へ転換</div>
+            <div><strong>HLS</strong>: SpaceX Starship / Blue Origin Blue Moon</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">欧州 — ESA</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>2026</strong> Moonlight初号機（Lunar Pathfinder）</div>
+            <div style="margin-bottom:1mm;"><strong>2028</strong> Moonlight運用開始</div>
+            <div style="margin-bottom:1mm;"><strong>2030</strong> 5衛星通信・測位完全運用</div>
+            <div><strong>Moon Village</strong>: 国際的永続月面プレゼンス構想</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">中国 — ILRS</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>2028</strong> Chang'e-7（ILRS基本構成）</div>
+            <div style="margin-bottom:1mm;"><strong>2029</strong> Chang'e-8（ISRU実験）</div>
+            <div style="margin-bottom:1mm;"><strong>2035</strong> <span style="color:#DC8766;font-weight:700;">ILRS基本モデル完成</span></div>
+            <div style="margin-bottom:1mm;"><strong>2040s</strong> ILRS拡張モデル</div>
+            <div>17ヶ国・50以上の研究機関が参加</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">日本 — JAXA</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>2025</strong> Lunar Cruiser開発フェーズ開始</div>
+            <div style="margin-bottom:1mm;"><strong>2027+</strong> Artemis計画に統合参加</div>
+            <div style="margin-bottom:1mm;"><strong>2030s初</strong> <span style="color:#DC8766;font-weight:700;">Lunar Cruiser月面投入</span></div>
+            <div>Toyota共同開発・水素燃料電池・航続10,000km</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">インド — ISRO</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>2023</strong> Chandrayaan-3 南極着陸成功</div>
+            <div style="margin-bottom:1mm;"><strong>計画中</strong> Chandrayaan-4 サンプルリターン</div>
+            <div><strong>2040</strong> 有人月面着陸目標</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">ロシア — Roscosmos</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>2029-36</strong> Luna-27~30 段階的探査</div>
+            <div><strong>ILRS</strong> 中国と共同で月面基地参加</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9; flex:1;">
+          <div style="font-size:10pt; font-weight:700; color:#783c28; margin-bottom:1.5mm;">その他</div>
+          <div style="font-size:7.5pt; line-height:1.55; color:#4a4a4a;">
+            <div style="margin-bottom:1mm;"><strong>UAE</strong> Lunar Gateway参加（2025年宣言）</div>
+            <div><strong>韓国</strong> 2032年月面着陸機ミッション目標</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {footer(page)}
+</div>
 """
-    for t in range(1, 10):
-        v = trl_dist.get(t, 0)
-        html += f'        <div class="bar-row"><span class="bar-label">TRL {t} {trl_stage(t)}</span><div class="bar-track"><div class="bar-fill" style="width:{v/max_trl*100:.0f}%;background:{trl_color(t)};"></div></div><span class="bar-value">{v}</span></div>\n'
-    html += '      </div>\n      <div class="stats-block">\n        <h3>組織別エントリ数</h3>\n'
-    for org, cnt in top_orgs:
-        html += f'        <div class="bar-row"><span class="bar-label">{truncate(org,18)}</span><div class="bar-track"><div class="bar-fill" style="width:{cnt/max_org*100:.0f}%;background:#783c28;"></div></div><span class="bar-value">{cnt}</span></div>\n'
-    html += f"""      </div>
-      <div class="stats-block">
-        <h3>カテゴリ別エントリ数</h3>
+    page += 1
+
+    # ━━━ SLIDE 4: HISTORICAL MILESTONES ━━━
+    html += f"""
+<div class="slide">
+  <div class="accent-bar" style="background:#783c28;"></div>
+  <div class="slide-inner">
+    <div class="content-header"><h2 style="color:#783c28;">月面基地に至る人類の歩み</h2></div>
+    <div style="position:relative; flex:1; padding:2mm 0;">
+      <div style="position:absolute; left:50%; top:0; bottom:0; width:2px; background:linear-gradient(180deg,#F0A671,#7A4033);"></div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0; height:100%;">
+        <div style="display:flex; flex-direction:column; justify-content:space-between; padding-right:8mm; text-align:right;">
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#F0A671;">1959</div>
+            <div style="color:#4a4a4a;">Luna 2 — 人類初の月面到達（衝突）</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#F0A671;">1966</div>
+            <div style="color:#4a4a4a;">Luna 9 — 初の軟着陸・月面写真撮影</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#DC8766;">1969-72</div>
+            <div style="color:#4a4a4a;">Apollo計画 — 6回の有人着陸、12人が月面歩行</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#DC8766;">2007-13</div>
+            <div style="color:#4a4a4a;">かぐや / Chandrayaan-1 / LCROSS / Chang'e-1~3<br>月面探査の国際化</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#B07256;">2019</div>
+            <div style="color:#4a4a4a;">Chang'e 4 — 人類初の月裏側着陸</div>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; justify-content:space-between; padding-left:8mm;">
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#B07256;">2023</div>
+            <div style="color:#4a4a4a;">Chandrayaan-3 南極着陸 / SLIM精密着陸</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#966D5E;">2025</div>
+            <div style="color:#4a4a4a;">商用月面着陸の幕開け<br>Firefly Blue Ghost成功 / IM-2 南極探査</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#966D5E;">2026</div>
+            <div style="color:#4a4a4a;">Artemis II 月周回完了 / 商用着陸加速</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#7A4033;">2028</div>
+            <div style="color:#DC8766; font-weight:700;">Artemis IV — Apollo以来の有人月面着陸</div>
+          </div>
+          <div style="font-size:8pt; line-height:1.5;">
+            <div style="font-size:11pt; font-weight:800; color:#7A4033;">2030s-40s</div>
+            <div style="color:#4a4a4a;">Artemis Base Camp建設 / ILRS基本モデル完成<br>Lunar Cruiser投入 / 月面永住の時代へ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  {footer(page)}
+</div>
 """
-    max_cat = max(len(v) for v in by_cat.values()) if by_cat else 1
-    for ck, ci in CATEGORIES.items():
-        cnt = len(by_cat.get(ck, []))
-        html += f'        <div class="bar-row"><span class="bar-label">{ci["ja"]}</span><div class="bar-track"><div class="bar-fill" style="width:{cnt/max_cat*100:.0f}%;background:{ci["color"]};"></div></div><span class="bar-value">{cnt}</span></div>\n'
-    html += """      </div>
-      <div class="stats-block">
-        <h3>タイムライン別</h3>
-"""
-    tl_count = {}
-    for e in entries:
-        t = e.get('timeline', 'unknown') or 'unknown'
-        tl_count[t] = tl_count.get(t, 0) + 1
-    max_tl = max(tl_count.values()) if tl_count else 1
-    for t in ['ongoing', '2020s', '2030s', '2040s']:
-        v = tl_count.get(t, 0)
-        if v:
-            html += f'        <div class="bar-row"><span class="bar-label">{t}</span><div class="bar-track"><div class="bar-fill" style="width:{v/max_tl*100:.0f}%;background:#966D5E;"></div></div><span class="bar-value">{v}</span></div>\n'
-    html += f"""      </div>
+    page += 1
+
+    # ━━━ SLIDE 5: WORLDWIDE PROJECTS ━━━
+    html += f"""
+<div class="slide">
+  <div class="accent-bar" style="background:#783c28;"></div>
+  <div class="slide-inner">
+    <div class="content-header"><h2 style="color:#783c28;">世界の月面基地プロジェクト</h2><span class="content-sub">政府機関と民間企業が並走する月面開発</span></div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:4mm; flex:1;">
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9;">
+          <div style="font-size:9pt; font-weight:700; color:#783c28; margin-bottom:2mm;">有人輸送・着陸システム</div>
+          <div style="font-size:7.5pt; line-height:1.6; color:#4a4a4a;">
+            <div style="margin-bottom:1.5mm;"><strong>SpaceX Starship HLS</strong> — NASA主契約、Block 3仕様、2028年初着陸予定</div>
+            <div style="margin-bottom:1.5mm;"><strong>Blue Origin Blue Moon Mk2</strong> — 最大4名乗員、30日滞在対応</div>
+            <div><strong>Toyota Lunar Cruiser</strong> — JAXA共同、圧力化ローバ、航続10,000km</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9;">
+          <div style="font-size:9pt; font-weight:700; color:#783c28; margin-bottom:2mm;">商用ロボット着陸機（CLPS）</div>
+          <div style="font-size:7.5pt; line-height:1.6; color:#4a4a4a;">
+            <div style="margin-bottom:1.5mm;"><strong>Intuitive Machines</strong> — IM-2南極探査中、IM-3計画</div>
+            <div style="margin-bottom:1.5mm;"><strong>Firefly Aerospace</strong> — Blue Ghost Mission 1成功（2025年3月）</div>
+            <div style="margin-bottom:1.5mm;"><strong>Astrobotic</strong> — Griffin着陸機（月南極、2026年）</div>
+            <div><strong>ispace</strong> — APEX 1.0（月裏側Schrödinger Basin、2026年）</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:3mm;">
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9;">
+          <div style="font-size:9pt; font-weight:700; color:#783c28; margin-bottom:2mm;">基地建設・ハビタット技術</div>
+          <div style="font-size:7.5pt; line-height:1.6; color:#4a4a4a;">
+            <div style="margin-bottom:1.5mm;"><strong>ICON Project Olympus</strong> — レーザー月壌溶融による3D印刷建設（NASA $57M契約）</div>
+            <div style="margin-bottom:1.5mm;"><strong>NASA Artemis Base Camp</strong> — 南極エリア永続基地、NextSTEPハビタット</div>
+            <div style="margin-bottom:1.5mm;"><strong>Sierra Space LIFE</strong> — 拡張式高圧ハビタット（軌道・月面両対応）</div>
+            <div><strong>BIG + SEArch+</strong> — Project Olympus建築設計パートナー</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9;">
+          <div style="font-size:9pt; font-weight:700; color:#783c28; margin-bottom:2mm;">通信・測位インフラ</div>
+          <div style="font-size:7.5pt; line-height:1.6; color:#4a4a4a;">
+            <div style="margin-bottom:1.5mm;"><strong>ESA Moonlight</strong> — 月衛星通信＆Galileo測位（5衛星、2030年完全運用）</div>
+            <div><strong>NASA LunaNet</strong> — 月面通信・航法アーキテクチャ</div>
+          </div>
+        </div>
+        <div style="border:1px solid #e8e0d8; border-radius:2.5mm; padding:3.5mm; background:#fdfbf9;">
+          <div style="font-size:9pt; font-weight:700; color:#783c28; margin-bottom:2mm;">資源探査・ISRU</div>
+          <div style="font-size:7.5pt; line-height:1.6; color:#4a4a4a;">
+            <div style="margin-bottom:1.5mm;"><strong>NASA PRIME-1</strong> — 極地水氷採掘実験（2025年）</div>
+            <div><strong>CNSA/Roscosmos ILRS</strong> — 月地質・ISRU科学拠点（2035年）</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   {footer(page)}
