@@ -24,14 +24,46 @@ CATEGORIES = {
 }
 
 MODULES = {
-    'private_room': {'ja': 'プライベートルーム', 'desc': '個人の居住・睡眠空間', 'image': 'private_room.png'},
-    'kitchen_dining': {'ja': 'キッチン&ダイニング', 'desc': '調理・食事・社交空間', 'image': 'kitchen_dining.png'},
-    'laboratory': {'ja': 'ラボラトリー', 'desc': '科学研究・分析施設', 'image': 'laboratory.png'},
-    'workspace': {'ja': 'ワークスペース', 'desc': '共同作業・オペレーション', 'image': 'workspace.png'},
-    'medical_bay': {'ja': 'メディカルベイ', 'desc': '医療・健康管理施設', 'image': 'medical_bay.png'},
-    'training_room': {'ja': 'トレーニングルーム', 'desc': '運動・フィットネス施設', 'image': 'training_room.png'},
-    'courtyard': {'ja': 'コートヤード', 'desc': '植物のある共用空間', 'image': 'courtyard.png'},
-    'plantation': {'ja': 'プランテーション', 'desc': '食料生産・農業施設', 'image': 'plantation.png'},
+    'private_room': {
+        'ja': 'プライベートルーム', 'pdf_title': 'Private Room',
+        'desc': '各クルーの個室。壁の中に配置され、机やベッドを壁にかけて省スペース化',
+        'image': 'private_room.png',
+    },
+    'kitchen_dining': {
+        'ja': 'ダイニングルーム', 'pdf_title': 'Dining Room',
+        'desc': '季節感を感じる食事の時間。コミュニケーションの場としても機能する社交空間',
+        'image': 'kitchen_dining.png',
+    },
+    'laboratory': {
+        'ja': 'ワークスペースC（実験室）', 'pdf_title': 'Work Space C',
+        'desc': '実験機器や宇宙服を備えた研究者のための実験空間。月面探査を支える拠点',
+        'image': 'laboratory.png',
+    },
+    'workspace': {
+        'ja': 'ワークルーム', 'pdf_title': 'Work Room A / B',
+        'desc': '仕切りを自由に動かせるオフィス空間。低重力で什器移動も楽々',
+        'image': 'workspace_a.png', 'image2': 'workspace_b.png',
+    },
+    'medical_bay': {
+        'ja': 'バスルーム', 'pdf_title': 'Bathroom',
+        'desc': '月の1/6Gで入浴・シャワーが可能。水場を一箇所に集めて循環する設計',
+        'image': 'bathroom.png',
+    },
+    'training_room': {
+        'ja': 'レクリエーションルーム', 'pdf_title': 'Recreation Room',
+        'desc': 'スクリーンを設置し映画・音楽・イベントを楽しめる大空間。文化を生み出す場',
+        'image': 'recreation.png',
+    },
+    'courtyard': {
+        'ja': 'プレイパーク', 'pdf_title': 'Play Park',
+        'desc': 'スポーツと緑の庭。借景として緑を配し、閉鎖環境に「見る」価値を提供',
+        'image': 'courtyard.png',
+    },
+    'plantation': {
+        'ja': 'プラントファクトリー', 'pdf_title': 'Plant Factory',
+        'desc': '生鮮食料を確保する植物工場。植物の成長が癒しと生命の実感をもたらす',
+        'image': 'plantation.png',
+    },
 }
 
 IMG_DIR = os.path.join(os.path.dirname(__file__), '..', 'images')
@@ -215,11 +247,13 @@ body {
 
 /* ── Module image slide ── */
 .mod-slide-layout {
-  display: grid; grid-template-columns: 48% 52%; gap: 4mm; flex: 1; overflow: hidden;
+  display: grid; grid-template-columns: 46% 54%; gap: 5mm; flex: 1;
+  min-height: 0; overflow: hidden;
 }
 .mod-image-area {
   position: relative; border-radius: 3mm; overflow: hidden;
   background: #f5f0eb; display: flex; align-items: center; justify-content: center;
+  min-height: 0;
 }
 .mod-image-area img {
   width: 100%; height: 100%; object-fit: cover; border-radius: 3mm;
@@ -229,25 +263,29 @@ body {
   background: rgba(26,26,26,0.65); color: #fff; padding: 1.5mm 3mm;
   border-radius: 1.5mm; font-size: 7pt; backdrop-filter: blur(4px);
 }
-.mod-right-area { display: flex; flex-direction: column; gap: 3mm; overflow: hidden; }
+.mod-right-area {
+  display: flex; flex-direction: column; gap: 2.5mm;
+  min-height: 0; overflow: hidden;
+}
 .mod-featured {
-  border: 1.5px solid; border-radius: 3mm; padding: 4mm;
+  border: 1.5px solid; border-radius: 3mm; padding: 3.5mm;
   background: #fdfbf9; flex: none;
 }
-.mod-featured-title { font-size: 11pt; font-weight: 700; line-height: 1.3; margin-bottom: 1.5mm; }
-.mod-featured-summary { font-size: 8pt; color: #4a4a4a; line-height: 1.5; }
-.mod-featured-meta { display: flex; gap: 2mm; align-items: center; margin-top: 2mm; flex-wrap: wrap; }
+.mod-featured-title { font-size: 10pt; font-weight: 700; line-height: 1.3; margin-bottom: 1mm; }
+.mod-featured-summary { font-size: 7.5pt; color: #4a4a4a; line-height: 1.45; }
+.mod-featured-meta { display: flex; gap: 1.5mm; align-items: center; margin-top: 1.5mm; flex-wrap: wrap; }
 .mod-rest-area {
   flex: 1; border: 1px solid #e8e0d8; border-radius: 2.5mm;
-  padding: 3mm; background: #fdfbf9; overflow: hidden;
+  padding: 2.5mm; background: #fdfbf9;
+  min-height: 0; overflow: hidden;
 }
-.mod-rest-title { font-size: 8pt; font-weight: 600; color: #6b5c52; margin-bottom: 2mm; }
-.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm; }
+.mod-rest-title { font-size: 7.5pt; font-weight: 600; color: #6b5c52; margin-bottom: 1.5mm; }
+.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm; }
 .mod-rest-item {
   display: flex; align-items: baseline; gap: 1.5mm;
-  font-size: 7pt; line-height: 1.4; padding: 0.5mm 0;
+  font-size: 6.5pt; line-height: 1.35; padding: 0.3mm 0;
 }
-.mod-rest-dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; flex-shrink: 0; margin-top: 1.2mm; }
+.mod-rest-dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; flex-shrink: 0; margin-top: 1mm; }
 
 /* ── Stats slide ── */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; flex: 1; }
@@ -480,7 +518,7 @@ body {
             html += f'        <img src="data:image/{img_fmt};base64,{img_b64}" alt="{mod["ja"]}">\n'
         else:
             html += f'        <div style="font-size:14pt;color:#966D5E;">{mod["ja"]}</div>\n'
-        html += f"""        <div class="mod-image-label">JAXA「Space Life on the Moon」月面基地イメージパース — {mod['ja']}</div>
+        html += f"""        <div class="mod-image-label">JAXA「Space Life on the Moon」— {mod.get('pdf_title', mod['ja'])}</div>
       </div>
       <div class="mod-right-area">
 """
@@ -493,8 +531,8 @@ body {
             etype = ENTRY_TYPE_JA.get(fe.get('entry_type', ''), '')
 
             html += f"""        <div class="mod-featured" style="border-color:{cat_c};">
-          <div class="mod-featured-title" style="color:{cat_c};">{truncate(fe['title'], 50)}</div>
-          <div class="mod-featured-summary">{truncate(fe.get('summary', ''), 120)}</div>
+          <div class="mod-featured-title" style="color:{cat_c};">{truncate(fe['title'], 45)}</div>
+          <div class="mod-featured-summary">{truncate(fe.get('summary', ''), 95)}</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:{cat_c};">{cat_j}</span>
 """
@@ -513,14 +551,14 @@ body {
           <div class="mod-rest-title">その他の関連事例（{len(rest)}件）</div>
           <div class="mod-rest-grid">
 """
-            for re_entry in rest[:12]:
+            for re_entry in rest[:10]:
                 rc = CATEGORIES.get(re_entry['category'], {}).get('color', '#999')
                 rj = CATEGORIES.get(re_entry['category'], {}).get('ja', '')
                 rtrl = re_entry.get('trl')
                 rtrl_s = f' TRL{rtrl}' if rtrl else ''
-                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:{rc};"></span><span><strong>{rj}</strong> {truncate(re_entry["title"], 28)}{rtrl_s}</span></div>\n'
-            if len(rest) > 12:
-                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 {len(rest)-12}件</span></div>\n'
+                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:{rc};"></span><span><strong>{rj}</strong> {truncate(re_entry["title"], 25)}{rtrl_s}</span></div>\n'
+            if len(rest) > 10:
+                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 {len(rest)-10}件</span></div>\n'
             html += """          </div>
         </div>
 """
