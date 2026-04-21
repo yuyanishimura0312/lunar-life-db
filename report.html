@@ -1,0 +1,1815 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>月面生活リサーチレポート — Space Life on the Moon</title>
+<style>
+@page {
+  size: A4 landscape;
+  margin: 12mm 15mm;
+}
+@media print {
+  .page-break { page-break-before: always; }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Kaku Gothic ProN", "Segoe UI", sans-serif;
+  color: #1a1a1a;
+  background: #fff;
+  font-size: 9pt;
+  line-height: 1.5;
+}
+.page {
+  width: 277mm;
+  min-height: 190mm;
+  padding: 0;
+  position: relative;
+}
+
+/* Cover */
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 190mm;
+  background: linear-gradient(135deg, #faf8f5 0%, #F8CDAC30 30%, #faf8f5 60%, #F0A67120 100%);
+  text-align: center;
+}
+.cover h1 {
+  font-size: 28pt;
+  color: #783c28;
+  letter-spacing: 0.15em;
+  margin-bottom: 8mm;
+  font-weight: 700;
+}
+.cover .subtitle {
+  font-size: 14pt;
+  color: #966D5E;
+  margin-bottom: 4mm;
+}
+.cover .desc {
+  font-size: 10pt;
+  color: #6b5c52;
+  max-width: 180mm;
+  margin-bottom: 12mm;
+}
+.cover .meta {
+  font-size: 9pt;
+  color: #966D5E;
+}
+.cover .stats {
+  display: flex;
+  gap: 20mm;
+  margin: 10mm 0;
+}
+.cover .stat-box {
+  text-align: center;
+}
+.cover .stat-num {
+  font-size: 24pt;
+  font-weight: 700;
+  color: #783c28;
+}
+.cover .stat-label {
+  font-size: 8pt;
+  color: #6b5c52;
+}
+
+/* Section headers */
+.section-header {
+  padding: 4mm 0 3mm;
+  border-bottom: 2px solid;
+  margin-bottom: 4mm;
+  display: flex;
+  align-items: baseline;
+  gap: 3mm;
+}
+.section-header h2 {
+  font-size: 16pt;
+  font-weight: 700;
+}
+.section-header .section-desc {
+  font-size: 9pt;
+  color: #6b5c52;
+}
+
+/* Entry cards in table */
+.entry-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.5pt;
+  margin-bottom: 4mm;
+}
+.entry-table th {
+  text-align: left;
+  padding: 2mm 2mm;
+  font-weight: 600;
+  font-size: 7.5pt;
+  color: #6b5c52;
+  border-bottom: 1px solid #e8e0d8;
+  white-space: nowrap;
+}
+.entry-table td {
+  padding: 2mm 2mm;
+  border-bottom: 1px solid #f0ebe5;
+  vertical-align: top;
+}
+.entry-table tr:last-child td {
+  border-bottom: none;
+}
+.badge {
+  display: inline-block;
+  padding: 0.5mm 2mm;
+  border-radius: 2mm;
+  font-size: 7pt;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+.badge-outline {
+  display: inline-block;
+  padding: 0.5mm 2mm;
+  border-radius: 2mm;
+  font-size: 7pt;
+  border: 0.5px solid;
+  background: transparent;
+  white-space: nowrap;
+}
+.trl-bar {
+  display: inline-flex;
+  gap: 0.5mm;
+  align-items: center;
+}
+.trl-dot {
+  width: 3mm;
+  height: 2mm;
+  border-radius: 0.5mm;
+}
+.module-tag {
+  display: inline-block;
+  padding: 0.3mm 1.5mm;
+  border-radius: 1mm;
+  font-size: 6.5pt;
+  background: #f5f0eb;
+  color: #6b5c52;
+  margin: 0.3mm 0.3mm;
+  white-space: nowrap;
+}
+.challenge-box {
+  background: #fdf9f5;
+  border-left: 3px solid;
+  padding: 2mm 3mm;
+  margin-bottom: 2mm;
+  font-size: 8pt;
+}
+.challenge-box .ch-title {
+  font-weight: 600;
+  font-size: 8.5pt;
+}
+.challenge-box .ch-desc {
+  color: #4a4a4a;
+  margin-top: 1mm;
+}
+
+/* Module section */
+.module-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3mm;
+}
+.module-card {
+  border: 1px solid #e8e0d8;
+  border-radius: 2mm;
+  padding: 3mm;
+  background: #fdfbf9;
+}
+.module-card h4 {
+  font-size: 10pt;
+  font-weight: 600;
+  margin-bottom: 1mm;
+  color: #783c28;
+}
+.module-card .mod-desc {
+  font-size: 7.5pt;
+  color: #6b5c52;
+  margin-bottom: 2mm;
+}
+.module-entries {
+  font-size: 7.5pt;
+  line-height: 1.4;
+}
+.module-entries li {
+  margin-bottom: 0.5mm;
+  list-style: none;
+  padding-left: 3mm;
+  position: relative;
+}
+.module-entries li::before {
+  content: "\25CF";
+  position: absolute;
+  left: 0;
+  font-size: 5pt;
+  line-height: 1.8;
+}
+
+/* TOC */
+.toc {
+  columns: 2;
+  column-gap: 8mm;
+  font-size: 9pt;
+}
+.toc-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1mm 0;
+  border-bottom: 1px dotted #e8e0d8;
+}
+.toc-item span:first-child {
+  font-weight: 500;
+}
+
+/* Footer */
+.page-footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 7pt;
+  color: #999;
+  padding-top: 2mm;
+  border-top: 0.5px solid #e8e0d8;
+}
+
+/* Overview stats page */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4mm;
+}
+.stat-card {
+  border: 1px solid #e8e0d8;
+  border-radius: 2mm;
+  padding: 3mm;
+}
+.stat-card h4 {
+  font-size: 8pt;
+  color: #6b5c52;
+  margin-bottom: 2mm;
+}
+.bar-row {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+  margin-bottom: 1mm;
+}
+.bar-label {
+  font-size: 7.5pt;
+  width: 25mm;
+  text-align: right;
+  flex-shrink: 0;
+}
+.bar-track {
+  flex: 1;
+  height: 3mm;
+  background: #f0ebe5;
+  border-radius: 1mm;
+  overflow: hidden;
+}
+.bar-fill {
+  height: 100%;
+  border-radius: 1mm;
+}
+.bar-value {
+  font-size: 7pt;
+  width: 8mm;
+  text-align: right;
+  flex-shrink: 0;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- COVER PAGE -->
+<div class="page cover">
+  <h1>月面生活リサーチレポート</h1>
+  <p class="subtitle">Space Life on the Moon — Research Database Report</p>
+  <p class="desc">
+    月面基地での生活課題と、それに応える世界中の技術・研究・プロジェクトを集めたデータベースの全件レポート。
+    JAXA「Space Life on the Moon」をベースに、NASA・ESA・JAXA・CNSA・大学・民間企業の取り組みを10カテゴリに分類。
+  </p>
+  <div class="stats">
+    <div class="stat-box">
+      <div class="stat-num">100</div>
+      <div class="stat-label">エントリ</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">38</div>
+      <div class="stat-label">組織</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">10</div>
+      <div class="stat-label">カテゴリ</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">10</div>
+      <div class="stat-label">課題</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">8</div>
+      <div class="stat-label">モジュール</div>
+    </div>
+  </div>
+  <p class="meta">NPO法人ミラツク / MIRA TUKU</p>
+  <p class="meta">2026年04月21日 作成</p>
+</div>
+
+<!-- TOC + OVERVIEW PAGE -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #783c28;">
+    <h2 style="color: #783c28;">目次・概要</h2>
+  </div>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; margin-top: 4mm;">
+    <div>
+      <h3 style="font-size: 10pt; color: #783c28; margin-bottom: 3mm;">カテゴリ別事例集</h3>
+      <div class="toc">
+        <div class="toc-item">
+          <span><span style="color:#F0A671;">&#9679;</span> 食（月面での食料生産・調理・栄養管...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#CEA26F;">&#9679;</span> 水（水資源の確保・循環・浄化...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#F8CDAC;">&#9679;</span> 衛生（個人衛生・微生物管理・廃棄物処...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#DC8766;">&#9679;</span> 医療（遠隔医療・放射線防護・メンタル...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#B07256;">&#9679;</span> 運動（筋力維持・骨密度保全・リハビリ...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#F2C792;">&#9679;</span> 衣服（宇宙服・船内着・スマートテキス...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#F0BE83;">&#9679;</span> 通信（通信インフラ・心理的接続・チー...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#EFC4A4;">&#9679;</span> 娯楽（レクリエーション・心理的ウェル...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#966D5E;">&#9679;</span> 睡眠・住環境（居住モジュール・概日リズム・プ...）</span>
+          <span>10件</span>
+        </div>
+        <div class="toc-item">
+          <span><span style="color:#7A4033;">&#9679;</span> 作業環境（AR支援・テレロボティクス・人...）</span>
+          <span>10件</span>
+        </div>
+      </div>
+      <h3 style="font-size: 10pt; color: #783c28; margin: 5mm 0 3mm;">月面基地モジュール別事例</h3>
+      <div class="toc">
+        <div class="toc-item">
+          <span>プライベートルーム</span>
+          <span>48件</span>
+        </div>
+        <div class="toc-item">
+          <span>キッチン&ダイニング</span>
+          <span>35件</span>
+        </div>
+        <div class="toc-item">
+          <span>ラボラトリー</span>
+          <span>53件</span>
+        </div>
+        <div class="toc-item">
+          <span>ワークスペース</span>
+          <span>53件</span>
+        </div>
+        <div class="toc-item">
+          <span>メディカルベイ</span>
+          <span>59件</span>
+        </div>
+        <div class="toc-item">
+          <span>トレーニングルーム</span>
+          <span>27件</span>
+        </div>
+        <div class="toc-item">
+          <span>コートヤード</span>
+          <span>22件</span>
+        </div>
+        <div class="toc-item">
+          <span>プランテーション</span>
+          <span>23件</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-size: 10pt; color: #783c28; margin-bottom: 3mm;">統計サマリー</h3>
+      <div class="stat-card" style="margin-bottom: 3mm;">
+        <h4>技術成熟度（TRL）分布</h4>
+        <div class="bar-row">
+          <span class="bar-label">TRL 1</span>
+          <div class="bar-track"><div class="bar-fill" style="width:5%;background:#DC8766;"></div></div>
+          <span class="bar-value">1</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 2</span>
+          <div class="bar-track"><div class="bar-fill" style="width:36%;background:#DC8766;"></div></div>
+          <span class="bar-value">8</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 3</span>
+          <div class="bar-track"><div class="bar-fill" style="width:45%;background:#DC8766;"></div></div>
+          <span class="bar-value">10</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 4</span>
+          <div class="bar-track"><div class="bar-fill" style="width:82%;background:#F0A671;"></div></div>
+          <span class="bar-value">18</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 5</span>
+          <div class="bar-track"><div class="bar-fill" style="width:86%;background:#F0A671;"></div></div>
+          <span class="bar-value">19</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 6</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#F0A671;"></div></div>
+          <span class="bar-value">22</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 7</span>
+          <div class="bar-track"><div class="bar-fill" style="width:64%;background:#7A4033;"></div></div>
+          <span class="bar-value">14</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 8</span>
+          <div class="bar-track"><div class="bar-fill" style="width:32%;background:#7A4033;"></div></div>
+          <span class="bar-value">7</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">TRL 9</span>
+          <div class="bar-track"><div class="bar-fill" style="width:5%;background:#7A4033;"></div></div>
+          <span class="bar-value">1</span>
+        </div>
+      </div>
+      <div class="stat-card">
+        <h4>組織別エントリ数（上位10）</h4>
+        <div class="bar-row">
+          <span class="bar-label">NASA</span>
+          <div class="bar-track"><div class="bar-fill" style="width:100%;background:#783c28;"></div></div>
+          <span class="bar-value">24</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">ESA</span>
+          <div class="bar-track"><div class="bar-fill" style="width:83%;background:#783c28;"></div></div>
+          <span class="bar-value">20</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">JAXA</span>
+          <div class="bar-track"><div class="bar-fill" style="width:62%;background:#783c28;"></div></div>
+          <span class="bar-value">15</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">CNSA</span>
+          <div class="bar-track"><div class="bar-fill" style="width:42%;background:#783c28;"></div></div>
+          <span class="bar-value">10</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">MIT</span>
+          <div class="bar-track"><div class="bar-fill" style="width:21%;background:#783c28;"></div></div>
+          <span class="bar-value">5</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Canadian Space </span>
+          <div class="bar-track"><div class="bar-fill" style="width:12%;background:#783c28;"></div></div>
+          <span class="bar-value">3</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">SpaceX</span>
+          <div class="bar-track"><div class="bar-fill" style="width:12%;background:#783c28;"></div></div>
+          <span class="bar-value">3</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">Massachusetts I</span>
+          <div class="bar-track"><div class="bar-fill" style="width:8%;background:#783c28;"></div></div>
+          <span class="bar-value">2</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">German Aerospac</span>
+          <div class="bar-track"><div class="bar-fill" style="width:8%;background:#783c28;"></div></div>
+          <span class="bar-value">2</span>
+        </div>
+        <div class="bar-row">
+          <span class="bar-label">MIT Computer Sc</span>
+          <div class="bar-track"><div class="bar-fill" style="width:4%;background:#783c28;"></div></div>
+          <span class="bar-value">1</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>2</span>
+  </div>
+</div>
+
+<!-- 食 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #F0A671;">
+    <h2 style="color: #F0A671;">食</h2>
+    <span class="section-desc">月面での食料生産・調理・栄養管理 — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #B07256;">
+      <span class="badge" style="background:#B07256;font-size:6.5pt;">高</span>
+      <span class="ch-title">食料の自給自足</span>
+      <div class="ch-desc">地球からの補給に依存しない食料生産体制の構築が必要。閉鎖環境での農業、栄養バランス、食の心理的満足度の確保が課題。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面環境対応型培養肉生産技術</strong></td>
+        <td>月面の低重力・放射線環境下で細胞培養による人工肉を生産する技術。地球からの食料輸送コストを大幅に削減し、長期滞在クルーに高品質なタンパク質を提供する。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">技術</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>昆虫蛋白質循環養殖システム</strong></td>
+        <td>月面基地での有機廃棄物を昆虫飼育に活用し、高効率でタンパク質を生産する循環型システム。少ない資源で高い栄養価を実現し、廃棄物処理も同時に解決する。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">プロジェクト</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面土壌改良による作物栽培研究</strong></td>
+        <td>月面レゴリスを改良して農業用土壌として活用する技術開発。地球からの土壌輸送コストを削減し、月面での持続的な食料生産基盤を構築する。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">コートヤード</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙食品保存・調理技術の最適化</strong></td>
+        <td>月面環境に適した食品保存と調理技術の開発。限られたエネルギーと設備で最大限の栄養価と食の満足度を実現する実用的なシステム。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">技術</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>心理的ウェルビーイング向上のための食文化再現</strong></td>
+        <td>月面基地でのクルーの心理的健康維持のため、地球の多様な食文化を再現する技術とシステム。食を通じた文化的アイデンティティの保持とチーム結束の促進を図る。</td>
+        <td>MIT</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">コンセプト</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">トレーニングルーム</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面環境における植物工場システムの効率的運用</strong></td>
+        <td>火星と月の土壌シミュラントを用いた植物栽培実験で、10種類の作物が実際に成長することが実証された。特にトマト、エンドウ豆、ライ麦が良好な成長を示し、月面での食料生産の可能性を示唆している。</td>
+        <td>Wageningen U</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>LEDを活用した月面植物工場の最適化研究</strong></td>
+        <td>LED照明技術を用いた植物工場システムにおいて、赤色と青色LEDの組み合わせが植物成長を最大40%向上させることが判明。月面での限定電力環境下での効率的な作物栽培への応用が期待される。</td>
+        <td>Chiba Univer</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>微重力環境下での水耕栽培システム開発</strong></td>
+        <td>ESAの研究により、微重力環境に適応した循環型水耕栽培システムが開発された。根圏環境の制御と栄養液循環の最適化により、地球環境の85%の収量を実現し、月面農業への応用可能性が示された。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地向け生物再生型生命維持システムの統合設計</strong></td>
+        <td>NASAエイムズ研究センターの研究により、植物栽培、廃棄物処理、大気再生を統合した生物再生型システムの設計が完成。4人乗組員の90%の食料と酸素を自給できるシステムモデルが構築された。</td>
+        <td>NASA Ames Re</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面レゴリスを活用した持続可能農業基盤の構築</strong></td>
+        <td>中国宇宙技術研究院の研究により、月面レゴリスを土壌改良材として活用する技術が開発された。微生物接種と有機物添加により、レゴリス基盤での作物栽培成功率が78%まで向上し、現地資源利用型農業の実現可能性が...</td>
+        <td>China Academ</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F0A671;color:#F0A671;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>3</span>
+  </div>
+</div>
+
+<!-- 水 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #CEA26F;">
+    <h2 style="color: #CEA26F;">水</h2>
+    <span class="section-desc">水資源の確保・循環・浄化 — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #DC8766;">
+      <span class="badge" style="background:#DC8766;font-size:6.5pt;">深刻</span>
+      <span class="ch-title">水資源の制約</span>
+      <div class="ch-desc">月面での水は極めて貴重な資源。飲料水、衛生用水、農業用水のすべてを限られた資源で賄う必要がある。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面氷採掘・精製統合システム</strong></td>
+        <td>月の極地域に存在する氷を採掘し、飲用可能な水に精製する統合システム。月面基地の長期運用における水資源確保の基盤技術。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">技術</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>閉鎖循環型水再生システム</strong></td>
+        <td>月面基地内で使用済み水を99%以上の効率で回収・再生する閉鎖循環システム。限られた水資源の最大活用を実現。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">技術</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>大気中水分捕集ナノフィルター</strong></td>
+        <td>月面基地内の微量な大気中水分を効率的に捕集する革新的ナノフィルター技術の基礎研究。従来技術では回収困難な水分の活用を目指す。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">コートヤード</span><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月壌利用水抽出プロセス</strong></td>
+        <td>月の土壌(レゴリス)から微量に含まれる水分を抽出する新しい加熱・分離技術の開発プロジェクト。月面全域での水資源活用可能性を探る。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">プロジェクト</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">プランテーション</span></td>
+      </tr>
+      <tr>
+        <td><strong>緊急時水配給システム</strong></td>
+        <td>月面基地でのシステム故障や緊急事態時に最低限の水供給を確保する分散型配給システム。クルーの生命維持に不可欠な安全対策技術。</td>
+        <td>SpaceX</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">事例</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>月極地における水氷埋蔵量の精密マッピングとISRU水抽出への応用</strong></td>
+        <td>月周回衛星LROとインドのチャンドラヤーン-1による観測データから、月南極のシャックルトン・クレーター周辺で高濃度の水氷埋蔵を確認。ISRU水抽出の実現可能性が大幅に向上した。</td>
+        <td>NASA Goddard</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">研究</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面ISRU水抽出のための太陽熱集光システムとサブリメーション技術</strong></td>
+        <td>月面の水氷含有レゴリスから効率的に水を抽出するため、太陽熱集光器とサブリメーション回収システムを開発。実験室試験で80％以上の回収効率を実証した。</td>
+        <td>Colorado Sch</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">研究</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙船用膜蒸留システムによる高効率水再生技術の開発</strong></td>
+        <td>微小重力環境での膜蒸留技術を用いた水再生システムを開発。従来技術より30％高い回収率95％を達成し、月面基地での水循環システムへの応用可能性を実証した。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">研究</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プライベートルーム</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面居住モジュール用統合型水管理システムの設計と性能評価</strong></td>
+        <td>月面基地の複数居住モジュール間での水循環を統合管理するシステムを設計。1年間のシミュレーション試験で98％の水循環効率と障害回復性を実証した。</td>
+        <td>NASA Ames Re</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">研究</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">プライベートルーム</span><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プランテーション</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面農業モジュール向け精密水循環・栄養管理システム</strong></td>
+        <td>月面での食料生産を支える水耕栽培システムを開発。水使用量を地上の1/3に削減しながら、レタス、大豆、イモ類の安定生産を実現した。</td>
+        <td>Kennedy Spac</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#CEA26F;color:#CEA26F;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>4</span>
+  </div>
+</div>
+
+<!-- 衛生 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #F8CDAC;">
+    <h2 style="color: #F8CDAC;">衛生</h2>
+    <span class="section-desc">個人衛生・微生物管理・廃棄物処理 — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #DC8766;">
+      <span class="badge" style="background:#DC8766;font-size:6.5pt;">深刻</span>
+      <span class="ch-title">月面レゴリスの有害性</span>
+      <div class="ch-desc">月面のレゴリスは微細で鋭角的な粒子で、吸入すると肺損傷を引き起こす可能性がある。帯電性が高く、機器や宇宙服に付着しやすい。</div>
+    </div>
+    <div class="challenge-box" style="border-color: #B07256;">
+      <span class="badge" style="background:#B07256;font-size:6.5pt;">高</span>
+      <span class="ch-title">閉鎖環境での衛生管理</span>
+      <div class="ch-desc">微生物叢の管理、廃棄物処理、空気清浄が閉鎖環境の健康を左右する。抗菌素材や紫外線殺菌の活用が必要。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面基地用超音波洗浄システム</strong></td>
+        <td>水の使用量を最小限に抑えながら効果的な清拭・洗浄を可能にする超音波技術システム。月面での限られた水資源下での衛生管理に革命をもたらす可能性がある。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">技術</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>個人用ドライシャンプーシステム開発</strong></td>
+        <td>水を使わない頭髪・頭皮の清浄を実現するドライシャンプーシステム。長期月面滞在における個人衛生の維持と心理的ウェルビーイングの向上を目指す。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">プロジェクト</span></td>
+        <td><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面排泄物処理・資源回収システム</strong></td>
+        <td>人体排泄物を処理して水分や栄養分を回収し、月面農業に活用する循環型システム。持続可能な月面基地運営の鍵となる技術概念。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">コンセプト</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">プランテーション</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>抗菌素材による月面基地表面コーティング</strong></td>
+        <td>銀ナノ粒子や光触媒を活用した抗菌コーティング技術。月面基地内の表面を継続的に清潔に保ち、感染症リスクを最小化する。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">技術</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地衛生管理プロトコル研究</strong></td>
+        <td>限られた資源と閉鎖環境における最適な衛生管理手順の確立を目指す包括的研究。地球の極限環境での実証を通じて実用的なガイドラインを策定。</td>
+        <td>MIT</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙船内微生物叢の多様性とその制御に関する研究</strong></td>
+        <td>ISS内の微生物叢の包括的な解析により、月面基地における微生物管理の重要性が明らかになった。長期間の閉鎖環境では病原性微生物の増殖リスクが高まることが判明した。</td>
+        <td>NASA Jet Pro</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面レゴリスの肺毒性評価とその対策技術</strong></td>
+        <td>月面レゴリスシミュラントを用いた毒性試験により、微粒子の肺への深刻な影響が確認された。月面基地では高効率な除塵システムと呼吸器保護が必須である。</td>
+        <td>Stony Brook </td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙ステーション水回収システムの微生物制御技術</strong></td>
+        <td>ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計に重要な知見を提供している。</td>
+        <td>NASA Johnson</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 9</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">研究</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>閉鎖環境における固形廃棄物処理技術の開発</strong></td>
+        <td>月面基地向けの固形廃棄物処理システムとして、熱分解処理と微生物分解の組み合わせが最も効果的であることが示された。廃棄物の90%以上をリサイクル可能な資源に変換できる。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙環境における手指衛生と表面消毒技術の評価</strong></td>
+        <td>無重力環境での手指衛生技術として、アルコール系消毒剤と抗菌性ワイプの組み合わせが最も効果的であることが実証された。月面基地での感染症予防プロトコルの基盤技術となる。</td>
+        <td>German Aeros</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#F8CDAC;color:#F8CDAC;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ラボラトリー</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>5</span>
+  </div>
+</div>
+
+<!-- 医療 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #DC8766;">
+    <h2 style="color: #DC8766;">医療</h2>
+    <span class="section-desc">遠隔医療・放射線防護・メンタルヘルス — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #DC8766;">
+      <span class="badge" style="background:#DC8766;font-size:6.5pt;">深刻</span>
+      <span class="ch-title">宇宙放射線被曝</span>
+      <div class="ch-desc">月面では地球磁場による防護がなく、銀河宇宙線や太陽粒子線に直接曝される。長期滞在では発がんリスクや中枢神経障害が懸念される。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面用小型MRI診断装置</strong></td>
+        <td>月面基地での高度な医療診断を可能にする小型化されたMRI装置です。低重力環境での内部臓器の状態変化を詳細に観察し、早期診断を実現します。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">技術</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面植物由来薬剤生産システム</strong></td>
+        <td>月面基地の植物栽培施設を活用して医薬品原料を生産するシステムです。地球からの薬剤補給に依存しない自給自足型の医療体制を構築します。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>低重力環境骨密度維持プログラム</strong></td>
+        <td>月面の低重力環境で長期滞在する宇宙飛行士の骨密度減少を防ぐ総合的なプログラムです。運動療法、栄養管理、薬物療法を組み合わせた多角的アプローチを採用します。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">課題</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>遠隔手術支援ロボットシステム</strong></td>
+        <td>月面基地で緊急手術が必要な場合に、地球の専門医による遠隔指導を受けながら手術を行うロボット支援システムです。通信遅延を考慮した半自律制御を特徴とします。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">技術</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>心理的ストレス軽減環境デザイン</strong></td>
+        <td>月面基地の閉鎖的環境で生じる心理的ストレスを軽減するための環境デザインコンセプトです。自然要素の導入と個人空間の最適化により、精神的健康の維持を図ります。</td>
+        <td>MIT</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">コンセプト</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">コートヤード</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面環境における遠隔医療システムの通信遅延が診断精度に与える影響</strong></td>
+        <td>地球-月間の通信遅延（約1.3秒）が遠隔医療の診断精度に与える影響を検証した研究。リアルタイム診断が困難な環境での医療プロトコル開発の重要性を示した。</td>
+        <td>NASA Ames Re</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面放射線環境における造血幹細胞保護の薬理学的アプローチ</strong></td>
+        <td>月面の宇宙放射線環境下での造血幹細胞損傷を軽減する放射線防護薬の開発研究。アミノチオール化合物の有効性を実証し、月面滞在時の造血機能維持の可能性を示した。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面重力環境における骨量減少に対する新規ビスホスホネート製剤の効果</strong></td>
+        <td>月面の低重力環境（1/6G）での骨量減少を抑制する新規ビスホスホネート製剤の開発研究。従来薬より高い骨密度維持効果を実証し、月面長期滞在の医学的実現性を向上させた。</td>
+        <td>JAXA Institu</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地における自律手術ロボットシステムの開発と検証</strong></td>
+        <td>月面環境での緊急手術に対応する自律手術ロボットシステムの開発研究。AI画像診断と精密ロボット制御により、地球からの支援なしに基本的外科処置を実行可能であることを実証した。</td>
+        <td>Massachusett</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面環境における薬物動態変化と個別化医療システムの構築</strong></td>
+        <td>低重力と放射線環境が薬物代謝に与える影響を解析し、月面環境に適応した個別化投薬システムを開発。従来の地球基準投薬では効果不十分または副作用リスクがあることを明らかにした。</td>
+        <td>University o</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#DC8766;color:#DC8766;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>6</span>
+  </div>
+</div>
+
+<!-- 運動 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #B07256;">
+    <h2 style="color: #B07256;">運動</h2>
+    <span class="section-desc">筋力維持・骨密度保全・リハビリ — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #B07256;">
+      <span class="badge" style="background:#B07256;font-size:6.5pt;">高</span>
+      <span class="ch-title">低重力環境（1/6G）</span>
+      <div class="ch-desc">月面の重力は地球の約1/6。骨密度低下、筋萎縮、心血管機能の変化が生じる。ISSの微小重力よりはましだが、長期的影響は未知。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面重力環境対応型運動処方システム</strong></td>
+        <td>月面の1/6重力環境に特化した運動処方を自動生成するAIシステムの研究。個人の身体状況と活動履歴に基づいて最適な運動プログラムを提案し、骨密度低下と筋力減退を防ぐ。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">研究</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>多目的重力負荷トレーニング装置COLEUS</strong></td>
+        <td>月面環境で地球相当の重力負荷を再現する革新的な運動器具。真空吸引技術と弾性負荷システムを組み合わせて全身運動を可能にする。コンパクト設計で月面基地への輸送効率も考慮。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">技術</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>中国月面基地運動生理学プロジェクト</strong></td>
+        <td>中国が推進する月面基地における運動生理学の包括的研究プロジェクト。太極拳などの伝統的運動療法と最新バイオメカニクス技術を融合し、東洋医学的アプローチによる宇宙医学の新展開を目指す。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">プロジェクト</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">コートヤード</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>植物連携型運動環境システム</strong></td>
+        <td>月面基地の植物栽培エリアと運動スペースを統合し、植物の酸素生成と人間の運動による二酸化炭素排出のバランスを最適化する革新的システム。心理的効果と環境制御の両面でメリットを提供。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">コンセプト</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">プランテーション</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面歩行シミュレーション・リハビリシステム</strong></td>
+        <td>月面基地内での歩行パターン維持と地球帰還時のリハビリテーションを両立する高度なシミュレーションシステム。VR技術と触覚フィードバックにより、様々な重力環境での歩行訓練を実現。</td>
+        <td>SpaceX</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">技術</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>ISS統合抵抗・有酸素運動トレーニング研究による宇宙飛行士の骨密度維持効果</strong></td>
+        <td>ISSでの統合抵抗・有酸素運動トレーニング研究により、適切な運動プログラムが微小重力環境での骨密度低下を大幅に軽減できることが実証された。月面基地での長期滞在における骨格系維持戦略の基礎となる重要な知...</td>
+        <td>NASA Johnson</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">研究</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面重力環境における筋力維持のためのフライホイール抵抗運動装置効果研究</strong></td>
+        <td>ESAが開発したフライホイール抵抗運動装置（FWRED）は、月面の低重力環境での筋力維持に優れた効果を示した。コンパクトな設計でありながら高負荷トレーニングが可能で、月面基地の運動施設に適している。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">研究</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面居住のための振動刺激と抵抗運動組み合わせによる骨吸収抑制効果</strong></td>
+        <td>全身振動刺激と抵抗運動を組み合わせた革新的なプロトコルが、模擬月面重力環境での骨吸収を効果的に抑制することが実証された。従来の運動療法単独と比較して40％高い骨保護効果を示した。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">研究</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地クルーのための最適化運動処方：心肺機能と筋骨格系の統合的維持戦略</strong></td>
+        <td>月面環境に特化した運動処方プロトコルが開発され、限られた時間と設備で心肺機能と筋骨格系を効率的に維持する方法が確立された。週4日、各60分のプログラムで地球レベルの体力維持が可能である。</td>
+        <td>Canadian Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">研究</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面での電気筋刺激と運動療法併用による筋萎縮防止効果の検証研究</strong></td>
+        <td>電気筋刺激（NMES）と従来運動の併用により、月面重力環境での筋萎縮を効果的に防止する新手法が確立された。受動的刺激により運動時間を短縮しながら筋量維持効果を向上させることに成功した。</td>
+        <td>Institute of</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#B07256;color:#B07256;">研究</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>7</span>
+  </div>
+</div>
+
+<!-- 衣服 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #F2C792;">
+    <h2 style="color: #F2C792;">衣服</h2>
+    <span class="section-desc">宇宙服・船内着・スマートテキスタイル — 10件のエントリ</span>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面環境対応スマートファブリック技術</strong></td>
+        <td>温度調節機能と放射線遮蔽性能を持つ次世代宇宙服内衣服の開発。月面の極端な温度変化と宇宙放射線から居住者を保護する。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">技術</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">プランテーション</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地内衣服洗浄・再利用システム</strong></td>
+        <td>水を使わない衣服洗浄技術と繊維リサイクルシステムの統合プロジェクト。月面での限られた資源を有効活用し、持続可能な衣服管理を実現する。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">プロジェクト</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面塵埃対応防護衣服材料研究</strong></td>
+        <td>月面レゴリスの微細粒子から身体と機器を保護する新素材の基礎研究。静電気特性と摩耗耐性を考慮した次世代防護衣服の開発を目指す。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">研究</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>中国月面基地用多機能衣服システム</strong></td>
+        <td>中国が提案する月面長期滞在用の統合衣服システム。生体監視、通信機能、環境適応機能を単一の衣服プラットフォームに統合する革新的アプローチ。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 1</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">コンセプト</span></td>
+        <td><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>重力変化対応運動支援ウェア</strong></td>
+        <td>月面の低重力環境下での筋力維持と骨密度低下防止を目的とした運動支援衣服の実証研究。MITが開発する人工筋肉技術を応用した実用的アプローチ。</td>
+        <td>MIT</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">事例</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>機械的対圧宇宙服における圧力線コントロール技術の進展</strong></td>
+        <td>MITの研究チームが開発した機械的対圧宇宙服（MCP）は、従来のガス加圧式宇宙服と比較して大幅な軽量化と可動性向上を実現した。月面での長期活動における宇宙飛行士の疲労軽減と作業効率向上に大きく貢献する...</td>
+        <td>Massachusett</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>スマートテキスタイルを活用した宇宙服内生体モニタリングシステム</strong></td>
+        <td>欧州宇宙機関とドイツ航空宇宙センターの共同研究により、導電性繊維を組み込んだスマートテキスタイルによる生体信号モニタリング技術が開発された。月面での長期滞在時における宇宙飛行士の健康状態をリアルタイム...</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面粉塵耐性材料の開発：静電気防止コーティング技術</strong></td>
+        <td>NASAエイムズ研究センターが開発した新しい静電気防止コーティング技術により、月面粉塵の宇宙服への付着を大幅に削減することに成功した。この技術は月面での長期活動における機器の故障リスク低減と宇宙飛行士...</td>
+        <td>NASA Ames Re</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>適応型圧力調整機能を持つ次世代宇宙服グローブの開発</strong></td>
+        <td>カナダ宇宙庁とトロント大学の研究チームが、手指の動きに応じて局所的な圧力を自動調整する革新的な宇宙服グローブを開発した。月面での精密作業効率を大幅に向上させ、長時間作業での手の疲労を軽減する画期的な技...</td>
+        <td>Canadian Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">研究</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>自己修復機能を持つ宇宙服外層材料の開発</strong></td>
+        <td>日本の宇宙航空研究開発機構（JAXA）と東京大学が共同開発した自己修復ポリマー材料により、微小隕石や鋭利な月面岩石による宇宙服の損傷を自動的に修復する技術が実現した。月面での緊急事態リスクを大幅に低減...</td>
+        <td>Japan Aerosp</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F2C792;color:#F2C792;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>8</span>
+  </div>
+</div>
+
+<!-- 通信 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #F0BE83;">
+    <h2 style="color: #F0BE83;">通信</h2>
+    <span class="section-desc">通信インフラ・心理的接続・チーム支援 — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #F0A671;">
+      <span class="badge" style="background:#F0A671;font-size:6.5pt;">中</span>
+      <span class="ch-title">通信遅延と地球との隔絶</span>
+      <div class="ch-desc">地球-月間の通信遅延は約1.3秒（片道）。リアルタイム会話は可能だが、自律的な意思決定能力が必要。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面基地内音響環境制御技術</strong></td>
+        <td>月面基地内での音響環境を最適化し、居住者間のコミュニケーション品質を向上させる技術。密閉環境における騒音制御と音声伝達の改善が主な目的。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">技術</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>地球-月面間量子通信ネットワーク</strong></td>
+        <td>量子もつれを利用した地球と月面基地間の超高セキュリティ通信システム。従来の電波通信の遅延や暗号化の限界を克服する次世代通信技術。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">研究</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>多言語リアルタイム翻訳システム</strong></td>
+        <td>国際的な月面基地クルー間のコミュニケーションを支援する、AI駆動の多言語リアルタイム翻訳技術。宇宙環境特有の専門用語と緊急時対応を考慮。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">技術</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面植物成長モニタリング通信プロトコル</strong></td>
+        <td>月面基地の植物栽培施設における成長データの自動収集・分析・報告システム。植物の健康状態を継続的に監視し、栽培者と地球の専門家に情報を提供。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">コンセプト</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">コートヤード</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地緊急時通信バックアップシステム</strong></td>
+        <td>主通信システム障害時の生命に関わる緊急通信を確保する多重化バックアップシステム。簡素で信頼性の高い技術を組み合わせた実用的なソリューション。</td>
+        <td>SpaceX</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">事例</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地における遅延耐性ネットワーキングの通信プロトコル最適化</strong></td>
+        <td>地球-月間の通信において最大14日間の通信途絶に対応する遅延耐性ネットワーク（DTN）プロトコルの性能分析が行われた。月面基地での自律的通信システム構築に重要な知見を提供している。</td>
+        <td>MIT Computer</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ラボラトリー</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面居住における心理的孤立に対する通信システムの影響評価</strong></td>
+        <td>月面での長期滞在における心理的健康維持のための通信システム要件が分析された。リアルタイム通信の重要性と代替コミュニケーション手段の効果が定量的に評価されている。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">コートヤード</span><span class="module-tag">ワークスペース</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地向け5G適応型無線通信システムの開発</strong></td>
+        <td>月面環境に適応した5G通信技術の開発により、基地内外での高速データ通信が可能となった。真空環境と低重力条件での電波伝搬特性が詳細に分析されている。</td>
+        <td>Nokia Bell L</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">研究</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面クルー支援のための音声・視覚統合コミュニケーションインターフェース</strong></td>
+        <td>月面での心理的ストレス軽減を目的とした、AI支援による多感覚コミュニケーションシステムが開発された。自然な対話体験の提供により、クルーの精神的健康維持に大きな効果が確認されている。</td>
+        <td>JAXA Human S</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">コートヤード</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面における量子暗号通信セキュリティアーキテクチャ</strong></td>
+        <td>月面基地の機密情報保護のための量子暗号通信システムが設計された。地球-月間および基地内通信の完全なセキュリティ確保により、商用・軍事両用途での信頼性高い運用が可能となっている。</td>
+        <td>University o</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#F0BE83;color:#F0BE83;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>9</span>
+  </div>
+</div>
+
+<!-- 娯楽 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #EFC4A4;">
+    <h2 style="color: #EFC4A4;">娯楽</h2>
+    <span class="section-desc">レクリエーション・心理的ウェルビーイング — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #B07256;">
+      <span class="badge" style="background:#B07256;font-size:6.5pt;">高</span>
+      <span class="ch-title">閉鎖空間での心理的ストレス</span>
+      <div class="ch-desc">限られた空間で少人数が長期間生活することによる心理的負荷。対人関係の摩擦、単調さ、地球との隔絶感が問題となる。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面VRエンターテインメントシステム</strong></td>
+        <td>月面基地での長期滞在における心理的ストレス軽減を目的とした仮想現実娯楽システム。地球の自然環境や社会活動を疑似体験可能。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">技術</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面園芸療法プログラム</strong></td>
+        <td>植物栽培を通じた心理的安定とレクリエーション効果を研究するプログラム。月面基地の植物栽培区域を活用した治療的娯楽活動。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">コートヤード</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>低重力スポーツ競技開発</strong></td>
+        <td>月面の低重力環境を活用した新しいスポーツ競技の開発。身体運動と娯楽を組み合わせた革新的なレクリエーション活動。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 2</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">コンセプト</span></td>
+        <td><span class="module-tag">トレーニングルーム</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面図書館・デジタルアーカイブシステム</strong></td>
+        <td>月面基地住民のための包括的デジタル図書館システム。書籍、映画、音楽、ゲームを統合したマルチメディア娯楽プラットフォーム。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">プロジェクト</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面料理・食文化体験プログラム</strong></td>
+        <td>月面基地での食事を単なる栄養補給から文化的・社交的体験へ発展させるプログラム。各国の食文化を取り入れた娯楽活動。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">事例</span></td>
+        <td><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">プランテーション</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>VR環境が長期宇宙滞在における心理的ストレス軽減に与える効果</strong></td>
+        <td>長期宇宙飛行におけるVR技術の心理的対策としての効果を検証した研究。地球環境のVR体験が宇宙飛行士の心理的健康維持に有効であることを実証し、月面基地での娯楽システム設計に重要な知見を提供している。</td>
+        <td>NASA Johnson</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">トレーニングルーム</span><span class="module-tag">コートヤード</span></td>
+      </tr>
+      <tr>
+        <td><strong>閉鎖環境における集団娯楽活動が社会的結束に与える影響</strong></td>
+        <td>Mars500実験における集団娯楽活動の分析から、チームワークを促進する娯楽プログラムが長期隔離環境での社会的結束維持に重要な役割を果たすことを実証。月面基地のクルー管理戦略に応用可能な知見を提供して...</td>
+        <td>Institute of</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">研究</span></td>
+        <td><span class="module-tag">コートヤード</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙居住環境における音楽とゲームの認知的・情動的効果</strong></td>
+        <td>ESAの研究チームが実施した隔離実験において、音楽療法とゲーミングが宇宙居住環境での認知機能維持と情動調整に与える効果を検証。月面基地での個人娯楽システム設計に科学的根拠を提供している。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙農園での園芸活動が心理的ウェルビーイングに与える治療的効果</strong></td>
+        <td>NASAの研究により、宇宙農園での植物栽培活動が宇宙飛行士の心理的ストレス軽減と生活満足度向上に顕著な効果を示すことが実証。月面基地の農業モジュールにおける娯楽的側面の重要性を科学的に裏付けている。</td>
+        <td>NASA Kennedy</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">研究</span></td>
+        <td><span class="module-tag">プランテーション</span><span class="module-tag">コートヤード</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>拡張現実技術による宇宙居住環境の空間拡張と心理的開放感の創出</strong></td>
+        <td>ドイツ航空宇宙センターの研究により、AR技術を用いた仮想的空間拡張が閉鎖環境での閉所恐怖症軽減と心理的開放感創出に効果的であることが実証。月面基地の限られた居住空間における心理的快適性向上の新しいアプ...</td>
+        <td>German Aeros</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#EFC4A4;color:#EFC4A4;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">コートヤード</span><span class="module-tag">ワークスペース</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>10</span>
+  </div>
+</div>
+
+<!-- 睡眠・住環境 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #966D5E;">
+    <h2 style="color: #966D5E;">睡眠・住環境</h2>
+    <span class="section-desc">居住モジュール・概日リズム・プライバシー — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #B07256;">
+      <span class="badge" style="background:#B07256;font-size:6.5pt;">高</span>
+      <span class="ch-title">極端な温度差</span>
+      <div class="ch-desc">月面は日中+127°C、夜間-173°Cという極端な温度差がある。居住モジュールの断熱と温度管理が不可欠。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面重力環境対応睡眠システム</strong></td>
+        <td>月面の1/6重力環境での良質な睡眠を実現するため、体位固定機能と温度調節機能を統合した睡眠システム。宇宙飛行士の睡眠時無呼吸症候群やREM睡眠の質的変化に対応する。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">技術</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>植物由来空気清浄機能付き寝室</strong></td>
+        <td>月面基地の個室に植物の空気清浄機能を統合し、睡眠時の空気質向上と心理的安定効果を両立させる居住環境設計コンセプト。酸素生成と有害物質除去を24時間稼働で実現する。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">コンセプト</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">コートヤード</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プランテーション</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面音響環境制御睡眠チャンバー</strong></td>
+        <td>月面基地の機械音や外部振動を遮断し、個人の好みに応じた音響環境を生成する睡眠専用チャンバー。アクティブノイズキャンセリングと睡眠誘導音響を統合したシステム。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">プロジェクト</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>概日リズム調節光療法システム</strong></td>
+        <td>月面の29.5日昼夜サイクルに対応し、クルーの概日リズムを地球型24時間周期に維持する光療法技術。個人差に対応した光強度・波長制御により睡眠-覚醒サイクルを最適化する。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+      <tr>
+        <td><strong>温度勾配制御睡眠マット</strong></td>
+        <td>体の部位ごとに異なる最適温度を提供し、月面基地の限られたエネルギーで効率的な体温調節を実現する睡眠マット。NASA CHAPEAミッションでの実証試験結果を基に改良。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 8</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">事例</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>国際宇宙ステーションにおける睡眠品質と概日リズム調節に関する長期研究</strong></td>
+        <td>ISS滞在中の宇宙飛行士の睡眠データを分析し、微小重力環境下での概日リズム障害と睡眠品質低下を実証した。月面基地での睡眠環境設計において光療法と音響制御の重要性を示している。</td>
+        <td>NASA Johnson</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>3Dプリント技術による月面レゴリスを用いた居住構造物の構築実証</strong></td>
+        <td>月面レゴリスシミュラントを用いた3Dプリント構造物の機械的特性を評価し、居住モジュールとしての実用性を検証した。月面基地の居住区画建設における現地資源利用の可能性を実証している。</td>
+        <td>ESA European</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>膨張式月面ハビタットの展開機構と居住性能評価</strong></td>
+        <td>膨張式ハビタット技術の月面環境適用性を評価し、軽量・大容積・迅速展開の利点を実証した。月面基地の初期建設段階における居住モジュールとして有望な技術である。</td>
+        <td>Bigelow Aero</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地における人工重力生成と睡眠環境最適化研究</strong></td>
+        <td>月面低重力環境での長期滞在が人体に与える影響を軽減するため、回転式人工重力システムと睡眠環境の最適化手法を開発した。月面基地での乗組員健康維持に重要な技術である。</td>
+        <td>JAXA宇宙医学研究セン</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面基地統合ハビタットシステムの環境制御と居住性能評価</strong></td>
+        <td>月面基地の統合ハビタットシステムにおける大気質制御、温湿度管理、音響環境の最適化技術を開発した。長期月面滞在における居住快適性と作業効率向上に寄与する研究成果である。</td>
+        <td>DLR German A</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#966D5E;color:#966D5E;">研究</span></td>
+        <td><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ラボラトリー</span><span class="module-tag">ワークスペース</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>11</span>
+  </div>
+</div>
+
+<!-- 作業環境 -->
+<div class="page page-break">
+  <div class="section-header" style="border-color: #7A4033;">
+    <h2 style="color: #7A4033;">作業環境</h2>
+    <span class="section-desc">AR支援・テレロボティクス・人間工学 — 10件のエントリ</span>
+  </div>
+  <div style="margin-bottom: 4mm;">
+    <h3 style="font-size: 9pt; color: #6b5c52; margin-bottom: 2mm;">主要課題</h3>
+    <div class="challenge-box" style="border-color: #DC8766;">
+      <span class="badge" style="background:#DC8766;font-size:6.5pt;">深刻</span>
+      <span class="ch-title">真空環境</span>
+      <div class="ch-desc">月面は事実上真空（大気圧の10^-12）。船外活動時の宇宙服依存、減圧事故のリスク、エアロック設計の重要性。</div>
+    </div>
+  </div>
+  <table class="entry-table">
+    <thead>
+      <tr>
+        <th style="width:30%;">タイトル</th>
+        <th style="width:30%;">概要</th>
+        <th style="width:8%;">組織</th>
+        <th style="width:6%;">TRL</th>
+        <th style="width:6%;">タイプ</th>
+        <th style="width:20%;">関連モジュール</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>月面作業用モジュラー家具システム</strong></td>
+        <td>低重力環境に最適化されたモジュラー家具システムで、様々な作業に柔軟に対応できる。人間工学に基づいた設計により、長期居住における作業効率と健康維持を両立する。</td>
+        <td>NASA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">技術</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">プライベートルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面ダスト対策ワークステーション</strong></td>
+        <td>月面レゴリスの微細粒子が作業環境に与える深刻な影響への対策技術。静電気除去、エアフィルタリング、密閉作業空間により、精密作業の安全性を確保する。</td>
+        <td>ESA</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">課題</span></td>
+        <td><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span><span class="module-tag">ワークスペース</span></td>
+      </tr>
+      <tr>
+        <td><strong>概日リズム調節照明システム</strong></td>
+        <td>月面の長い昼夜サイクルに対応した人工照明システム。地球の24時間サイクルに合わせた光環境を作り、クルーの生体リズムと作業効率を維持する。</td>
+        <td>JAXA</td>
+        <td><span class="badge" style="background:#7A4033;">TRL 7</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">技術</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">プライベートルーム</span><span class="module-tag">キッチン&ダイニング</span><span class="module-tag">ラボラトリー</span></td>
+      </tr>
+      <tr>
+        <td><strong>仮想現実ワークスペース拡張システム</strong></td>
+        <td>限られた物理空間を仮想現実で拡張し、無限の作業環境を提供するシステム。地球との協働作業や複雑な設計作業を可能にし、心理的な閉塞感も軽減する。</td>
+        <td>CNSA</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">コンセプト</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>重力変動適応ワークフロー管理</strong></td>
+        <td>月面の低重力環境における作業効率の変化を分析し、最適な作業手順とスケジューリングを提案するシステム。人間の動作特性の変化に合わせて作業プロセスを調整する。</td>
+        <td>MIT</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span><span class="module-tag">プランテーション</span></td>
+      </tr>
+      <tr>
+        <td><strong>拡張現実を用いた宇宙船外活動における認知負荷軽減システムの開発</strong></td>
+        <td>NASAとMITの共同研究により、AR技術を用いたEVA支援システムが宇宙飛行士の認知負荷を40%削減することが実証された。月面での複雑な保守作業においてタスク効率が大幅に向上する可能性を示している。</td>
+        <td>NASA Johnson</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 4</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面テレロボティクス作業における遅延補償制御システム</strong></td>
+        <td>ESAの研究により、地球から月面ロボットを制御する際の通信遅延（往復2.6秒）を予測制御技術で補償するシステムが開発された。月面基地建設における遠隔作業効率が大幅に向上する。</td>
+        <td>European Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">プランテーション</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面重力環境における船外活動時の人間工学的要因分析</strong></td>
+        <td>月面重力（地球の1/6）での船外活動における人体への影響を詳細分析した研究。筋疲労パターンや運動制御の変化が明らかになり、月面用作業プロトコルの最適化指針が示された。</td>
+        <td>University o</td>
+        <td><span class="badge" style="background:#DC8766;">TRL 3</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">トレーニングルーム</span><span class="module-tag">メディカルベイ</span></td>
+      </tr>
+      <tr>
+        <td><strong>宇宙環境における複合タスク実行時の認知負荷測定システム</strong></td>
+        <td>JAXAとの共同研究により、宇宙飛行士の認知負荷をリアルタイムで測定・評価するシステムが開発された。脳波、心拍変動、視線追跡の統合解析により月面作業の最適化が可能となる。</td>
+        <td>University o</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 6</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span></td>
+      </tr>
+      <tr>
+        <td><strong>月面居住環境における複合現実技術による協調作業支援システム</strong></td>
+        <td>複合現実（MR）技術を活用した月面基地での協調作業支援システムの研究。物理空間とデジタル空間の融合により、遠隔地との協調作業効率が従来比70%向上することが実証された。</td>
+        <td>Canadian Spa</td>
+        <td><span class="badge" style="background:#F0A671;">TRL 5</span></td>
+        <td><span class="badge-outline" style="border-color:#7A4033;color:#7A4033;">研究</span></td>
+        <td><span class="module-tag">ワークスペース</span><span class="module-tag">ラボラトリー</span><span class="module-tag">メディカルベイ</span><span class="module-tag">トレーニングルーム</span><span class="module-tag">キッチン&ダイニング</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>12</span>
+  </div>
+</div>
+
+<div class="page page-break">
+  <div class="section-header" style="border-color: #783c28;">
+    <h2 style="color: #783c28;">月面基地モジュール別 事例マッピング</h2>
+    <span class="section-desc">JAXA月面基地イメージパースの各モジュールに関連する技術・研究</span>
+  </div>
+
+  <div class="module-grid">
+    <div class="module-card">
+      <h4>プライベートルーム</h4>
+      <div class="mod-desc">個人の居住・睡眠空間 — 48件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面環境対応スマートファブリック技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面基地内衣服洗浄・再利用システム (TRL5)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 中国月面基地用多機能衣服システム (TRL1)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 重力変化対応運動支援ウェア (TRL6)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> スマートテキスタイルを活用した宇宙服内生体モニタリングシステム (TRL5)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面基地内音響環境制御技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面基地緊急時通信バックアップシステム (TRL8)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面基地における遅延耐性ネットワーキングの通信プロトコル最適化 (TRL4)</li>
+        <li style="color:#999;">...他 40件</li>
+      </ul>
+    </div>
+    <div class="module-card">
+      <h4>キッチン&ダイニング</h4>
+      <div class="mod-desc">調理・食事・社交空間 — 35件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面基地内衣服洗浄・再利用システム (TRL5)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 多言語リアルタイム翻訳システム (TRL7)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面基地向け5G適応型無線通信システムの開発 (TRL5)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 月面図書館・デジタルアーカイブシステム (TRL5)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 月面料理・食文化体験プログラム (TRL8)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 閉鎖環境における集団娯楽活動が社会的結束に与える影響 (TRL7)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 宇宙農園での園芸活動が心理的ウェルビーイングに与える治療的効果 (TRL8)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 拡張現実技術による宇宙居住環境の空間拡張と心理的開放感の創出 (TRL5)</li>
+        <li style="color:#999;">...他 27件</li>
+      </ul>
+    </div>
+    <div class="module-card">
+      <h4>ラボラトリー</h4>
+      <div class="mod-desc">科学研究・分析施設 — 53件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面塵埃対応防護衣服材料研究 (TRL2)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 中国月面基地用多機能衣服システム (TRL1)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 機械的対圧宇宙服における圧力線コントロール技術の進展 (TRL4)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面粉塵耐性材料の開発：静電気防止コーティング技術 (TRL6)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 適応型圧力調整機能を持つ次世代宇宙服グローブの開発 (TRL5)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 自己修復機能を持つ宇宙服外層材料の開発 (TRL4)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面基地内音響環境制御技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 地球-月面間量子通信ネットワーク (TRL3)</li>
+        <li style="color:#999;">...他 45件</li>
+      </ul>
+    </div>
+    <div class="module-card">
+      <h4>ワークスペース</h4>
+      <div class="mod-desc">共同作業・オペレーション — 53件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面環境対応スマートファブリック技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面基地内衣服洗浄・再利用システム (TRL5)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面塵埃対応防護衣服材料研究 (TRL2)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 中国月面基地用多機能衣服システム (TRL1)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 重力変化対応運動支援ウェア (TRL6)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 機械的対圧宇宙服における圧力線コントロール技術の進展 (TRL4)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> スマートテキスタイルを活用した宇宙服内生体モニタリングシステム (TRL5)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面粉塵耐性材料の開発：静電気防止コーティング技術 (TRL6)</li>
+        <li style="color:#999;">...他 45件</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>13</span>
+  </div>
+</div>
+
+<div class="page page-break">
+  <div class="section-header" style="border-color: #783c28;">
+    <h2 style="color: #783c28;">月面基地モジュール別 事例マッピング（続き）</h2>
+    <span class="section-desc">JAXA月面基地イメージパースの各モジュールに関連する技術・研究</span>
+  </div>
+
+  <div class="module-grid">
+    <div class="module-card">
+      <h4>メディカルベイ</h4>
+      <div class="mod-desc">医療・健康管理施設 — 59件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面基地内衣服洗浄・再利用システム (TRL5)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面塵埃対応防護衣服材料研究 (TRL2)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 中国月面基地用多機能衣服システム (TRL1)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> スマートテキスタイルを活用した宇宙服内生体モニタリングシステム (TRL5)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 適応型圧力調整機能を持つ次世代宇宙服グローブの開発 (TRL5)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面基地内音響環境制御技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 地球-月面間量子通信ネットワーク (TRL3)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 多言語リアルタイム翻訳システム (TRL7)</li>
+        <li style="color:#999;">...他 51件</li>
+      </ul>
+    </div>
+    <div class="module-card">
+      <h4>トレーニングルーム</h4>
+      <div class="mod-desc">運動・フィットネス施設 — 27件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 中国月面基地用多機能衣服システム (TRL1)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 重力変化対応運動支援ウェア (TRL6)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> スマートテキスタイルを活用した宇宙服内生体モニタリングシステム (TRL5)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 多言語リアルタイム翻訳システム (TRL7)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面居住における心理的孤立に対する通信システムの影響評価 (TRL6)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 低重力スポーツ競技開発 (TRL2)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> VR環境が長期宇宙滞在における心理的ストレス軽減に与える効果 (TRL6)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 閉鎖環境における集団娯楽活動が社会的結束に与える影響 (TRL7)</li>
+        <li style="color:#999;">...他 19件</li>
+      </ul>
+    </div>
+    <div class="module-card">
+      <h4>コートヤード</h4>
+      <div class="mod-desc">植物のある共用空間 — 22件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面環境対応スマートファブリック技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 機械的対圧宇宙服における圧力線コントロール技術の進展 (TRL4)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面粉塵耐性材料の開発：静電気防止コーティング技術 (TRL6)</li>
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 自己修復機能を持つ宇宙服外層材料の開発 (TRL4)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面植物成長モニタリング通信プロトコル (TRL2)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面居住における心理的孤立に対する通信システムの影響評価 (TRL6)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面クルー支援のための音声・視覚統合コミュニケーションインターフェース (TRL7)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 月面VRエンターテインメントシステム (TRL6)</li>
+        <li style="color:#999;">...他 14件</li>
+      </ul>
+    </div>
+    <div class="module-card">
+      <h4>プランテーション</h4>
+      <div class="mod-desc">食料生産・農業施設 — 23件の関連エントリ</div>
+      <ul class="module-entries">
+        <li><span class="badge" style="background:#F2C792;font-size:6pt;padding:0.3mm 1.5mm;">衣服</span> 月面環境対応スマートファブリック技術 (TRL4)</li>
+        <li><span class="badge" style="background:#F0BE83;font-size:6pt;padding:0.3mm 1.5mm;">通信</span> 月面植物成長モニタリング通信プロトコル (TRL2)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 月面園芸療法プログラム (TRL4)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 月面料理・食文化体験プログラム (TRL8)</li>
+        <li><span class="badge" style="background:#EFC4A4;font-size:6pt;padding:0.3mm 1.5mm;">娯楽</span> 宇宙農園での園芸活動が心理的ウェルビーイングに与える治療的効果 (TRL8)</li>
+        <li><span class="badge" style="background:#B07256;font-size:6pt;padding:0.3mm 1.5mm;">運動</span> 植物連携型運動環境システム (TRL2)</li>
+        <li><span class="badge" style="background:#F0A671;font-size:6pt;padding:0.3mm 1.5mm;">食</span> 月面土壌改良による作物栽培研究 (TRL4)</li>
+        <li><span class="badge" style="background:#F0A671;font-size:6pt;padding:0.3mm 1.5mm;">食</span> 月面環境における植物工場システムの効率的運用 (TRL3)</li>
+        <li style="color:#999;">...他 15件</li>
+      </ul>
+    </div>
+  </div>
+  <div class="page-footer">
+    <span>月面生活リサーチレポート — NPO法人ミラツク</span>
+    <span>14</span>
+  </div>
+</div>
+
+</body>
+</html>
