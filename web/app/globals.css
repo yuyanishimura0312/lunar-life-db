@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+:root {
+  /* Miratuku CI Colors */
+  --miratuku-golden-orange: #F0A671;
+  --miratuku-light-beige: #F2C792;
+  --miratuku-warm-beige: #F1C189;
+  --miratuku-camel: #CEA26F;
+  --miratuku-pale-peach: #F8CDAC;
+  --miratuku-sand-gold: #F0BE83;
+  --miratuku-soft-salmon: #EFC4A4;
+  --miratuku-rose-peach: #F7BEA2;
+  --miratuku-terracotta: #DC8766;
+  --miratuku-amber-brown: #B07256;
+  --miratuku-warm-brown: #966D5E;
+  --miratuku-deep-brown: #7A4033;
+
+  --accent: #783c28;
+  --accent-light: #9a5a3e;
+  --bg: #faf8f5;
+  --bg-card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #6b5c52;
+  --border: #e8e0d8;
+}
+
+@theme inline {
+  --color-accent: var(--accent);
+  --color-accent-light: var(--accent-light);
+  --color-bg: var(--bg);
+  --color-bg-card: var(--bg-card);
+  --color-text: var(--text);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+
+  --color-cat-food: #F0A671;
+  --color-cat-water: #CEA26F;
+  --color-cat-hygiene: #F8CDAC;
+  --color-cat-medical: #DC8766;
+  --color-cat-exercise: #B07256;
+  --color-cat-clothing: #F2C792;
+  --color-cat-communication: #F0BE83;
+  --color-cat-entertainment: #EFC4A4;
+  --color-cat-sleep: #966D5E;
+  --color-cat-work: #7A4033;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}

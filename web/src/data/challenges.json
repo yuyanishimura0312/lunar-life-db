@@ -1,0 +1,112 @@
+[
+  {
+    "id": "ch_006",
+    "name_ja": "通信遅延と地球との隔絶",
+    "name_en": "Communication delay and isolation",
+    "category": "communication",
+    "challenge_type": "communication_delay",
+    "description": "地球-月間の通信遅延は約1.3秒（片道）。リアルタイム会話は可能だが、自律的な意思決定能力が必要。",
+    "severity": "medium",
+    "iss_analog": "ISS乗組員はリアルタイム通信が可能",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_004",
+    "name_ja": "閉鎖空間での心理的ストレス",
+    "name_en": "Psychological stress in confinement",
+    "category": "entertainment",
+    "challenge_type": "psychological",
+    "description": "限られた空間で少人数が長期間生活することによる心理的負荷。対人関係の摩擦、単調さ、地球との隔絶感が問題となる。",
+    "severity": "high",
+    "iss_analog": "ISS6ヶ月ミッション、南極越冬隊での報告",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_002",
+    "name_ja": "低重力環境（1/6G）",
+    "name_en": "Low gravity (1/6G)",
+    "category": "exercise",
+    "challenge_type": "microgravity",
+    "description": "月面の重力は地球の約1/6。骨密度低下、筋萎縮、心血管機能の変化が生じる。ISSの微小重力よりはましだが、長期的影響は未知。",
+    "severity": "high",
+    "iss_analog": "ISS乗組員は月1-2%の骨密度低下を経験",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_008",
+    "name_ja": "食料の自給自足",
+    "name_en": "Food self-sufficiency",
+    "category": "food",
+    "challenge_type": "resource_scarcity",
+    "description": "地球からの補給に依存しない食料生産体制の構築が必要。閉鎖環境での農業、栄養バランス、食の心理的満足度の確保が課題。",
+    "severity": "high",
+    "iss_analog": "ISS Veggie/APH実験での少量栽培",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_003",
+    "name_ja": "月面レゴリスの有害性",
+    "name_en": "Lunar regolith toxicity",
+    "category": "hygiene",
+    "challenge_type": "dust",
+    "description": "月面のレゴリスは微細で鋭角的な粒子で、吸入すると肺損傷を引き起こす可能性がある。帯電性が高く、機器や宇宙服に付着しやすい。",
+    "severity": "critical",
+    "iss_analog": "アポロ飛行士が報告した「月の匂い」と呼吸器症状",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_010",
+    "name_ja": "閉鎖環境での衛生管理",
+    "name_en": "Hygiene in closed environment",
+    "category": "hygiene",
+    "challenge_type": "confined_environment",
+    "description": "微生物叢の管理、廃棄物処理、空気清浄が閉鎖環境の健康を左右する。抗菌素材や紫外線殺菌の活用が必要。",
+    "severity": "high",
+    "iss_analog": "ISS内の微生物モニタリングと空気浄化システム",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_001",
+    "name_ja": "宇宙放射線被曝",
+    "name_en": "Space radiation exposure",
+    "category": "medical",
+    "challenge_type": "radiation",
+    "description": "月面では地球磁場による防護がなく、銀河宇宙線や太陽粒子線に直接曝される。長期滞在では発がんリスクや中枢神経障害が懸念される。",
+    "severity": "critical",
+    "iss_analog": "ISS乗組員は約6ヶ月で地上の約100倍の放射線を浴びる",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_007",
+    "name_ja": "極端な温度差",
+    "name_en": "Extreme temperature variations",
+    "category": "sleep_habitat",
+    "challenge_type": "thermal",
+    "description": "月面は日中+127°C、夜間-173°Cという極端な温度差がある。居住モジュールの断熱と温度管理が不可欠。",
+    "severity": "high",
+    "iss_analog": "ISS外部は-157°Cから+121°Cの範囲",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_005",
+    "name_ja": "水資源の制約",
+    "name_en": "Water resource limitations",
+    "category": "water",
+    "challenge_type": "resource_scarcity",
+    "description": "月面での水は極めて貴重な資源。飲料水、衛生用水、農業用水のすべてを限られた資源で賄う必要がある。",
+    "severity": "critical",
+    "iss_analog": "ISS ECLSSは尿を含む水の93%以上をリサイクル",
+    "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_009",
+    "name_ja": "真空環境",
+    "name_en": "Vacuum environment",
+    "category": "work_environment",
+    "challenge_type": "vacuum",
+    "description": "月面は事実上真空（大気圧の10^-12）。船外活動時の宇宙服依存、減圧事故のリスク、エアロック設計の重要性。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-04-21 08:32:47"
+  }
+]
