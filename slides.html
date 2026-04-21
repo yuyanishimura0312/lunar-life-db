@@ -24,7 +24,7 @@ body {
 @media screen {
   .slide { margin: 8mm auto; box-shadow: 0 2px 12px rgba(0,0,0,0.12); }
 }
-.slide-inner { padding: 14mm 18mm 18mm; height: 100%; display: flex; flex-direction: column; }
+.slide-inner { padding: 14mm 20mm 18mm 18mm; height: 100%; display: flex; flex-direction: column; }
 
 /* ── Accent bar at top ── */
 .accent-bar { position: absolute; top: 0; left: 0; right: 0; height: 4mm; }
@@ -111,8 +111,8 @@ body {
 
 /* ── Module image slide ── */
 .mod-slide-layout {
-  display: grid; grid-template-columns: 46% 54%; gap: 5mm;
-  height: 155mm; overflow: hidden;
+  display: grid; grid-template-columns: 46% 1fr; gap: 5mm;
+  height: 150mm; overflow: hidden;
 }
 .mod-image-area {
   position: relative; border-radius: 3mm; overflow: hidden;
