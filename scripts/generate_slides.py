@@ -76,6 +76,93 @@ ENTRY_TYPE_JA = {
 SEVERITY_JA = {'critical': '深刻', 'high': '高', 'medium': '中', 'low': '低'}
 SEVERITY_COLOR = {'critical': '#DC8766', 'high': '#B07256', 'medium': '#F0A671', 'low': '#CEA26F'}
 
+# Module-specific context relevance configuration
+# primary_cats: categories most relevant to the module's purpose
+# keywords: terms in title/summary that indicate strong fit
+MODULE_CONTEXT = {
+    'private_room': {
+        'primary_cats': ['sleep_habitat', 'entertainment', 'communication'],
+        'keywords': ['睡眠', 'プライバシー', '概日', '照明', '個室', '居住', 'サーカディアン',
+                     'ベッド', 'リラックス', '安眠', '音響', '騒音', 'sleep', 'circadian', 'privacy',
+                     'habitat', '住環境', 'プライベート', '休息'],
+    },
+    'kitchen_dining': {
+        'primary_cats': ['food', 'water', 'entertainment'],
+        'keywords': ['食', '調理', '栄養', '食事', '料理', 'メニュー', '培養肉', '昆虫',
+                     '水耕', '発酵', 'food', 'dining', 'meal', 'cook', '食文化', 'キッチン',
+                     '食料', '社交', 'コミュニケーション'],
+    },
+    'laboratory': {
+        'primary_cats': ['work_environment', 'medical', 'hygiene'],
+        'keywords': ['実験', '研究', '分析', 'ラボ', '科学', '検査', 'サンプル', '計測',
+                     '宇宙服', '船外', 'EVA', 'laboratory', 'research', 'experiment',
+                     '探査', 'レゴリス', '試料', '機器'],
+    },
+    'workspace': {
+        'primary_cats': ['work_environment', 'communication'],
+        'keywords': ['作業', 'オフィス', '仕事', 'デスク', 'AR', 'MR', 'ロボティクス',
+                     '遠隔', 'デジタルツイン', 'スケジューリング', '認知', 'タスク',
+                     'workspace', 'office', 'テレワーク', '会議', '協働', 'チーム'],
+    },
+    'medical_bay': {
+        'primary_cats': ['hygiene', 'water', 'medical'],
+        'keywords': ['衛生', '入浴', 'シャワー', '洗濯', '洗浄', '水', 'リサイクル',
+                     '浄化', '殺菌', 'バスルーム', '清潔', 'hygiene', 'bath', 'water',
+                     '循環', '排水', '廃棄物', 'トイレ', '無水'],
+    },
+    'training_room': {
+        'primary_cats': ['entertainment', 'exercise', 'communication'],
+        'keywords': ['娯楽', 'レクリエーション', 'VR', 'ゲーム', '映画', '音楽',
+                     'スクリーン', 'イベント', '文化', '芸術', 'recreation', 'entertainment',
+                     'アート', 'コンサート', '趣味', 'リラクゼーション', 'マインドフルネス'],
+    },
+    'courtyard': {
+        'primary_cats': ['exercise', 'entertainment', 'sleep_habitat'],
+        'keywords': ['運動', 'スポーツ', 'トレーニング', '筋力', '骨密度', 'フィットネス',
+                     '緑', '植物', '庭', '散歩', 'exercise', 'sport', 'fitness', 'park',
+                     'バスケ', '体操', 'ジム', '身体', '心理'],
+    },
+    'plantation': {
+        'primary_cats': ['food', 'water', 'hygiene'],
+        'keywords': ['植物', '栽培', '農業', '作物', 'LED', '水耕', 'エアロポニクス',
+                     '藻類', '野菜', '収穫', 'plant', 'farm', 'crop', 'agriculture',
+                     '光合成', '生態系', 'バイオ', '食料生産', 'レタス'],
+    },
+}
+
+
+def context_fit_score(entry, module_key):
+    """Score how well an entry fits a module's context (higher = better fit)."""
+    ctx = MODULE_CONTEXT.get(module_key, {})
+    score = 0.0
+
+    # 1. Category match (strongest signal)
+    primary_cats = ctx.get('primary_cats', [])
+    cat = entry.get('category', '')
+    if cat in primary_cats:
+        # Higher score for first (most relevant) category
+        rank = primary_cats.index(cat)
+        score += (3 - rank) * 10  # 30, 20, 10
+
+    # 2. Keyword match in title and summary
+    keywords = ctx.get('keywords', [])
+    title = (entry.get('title', '') or '').lower()
+    summary = (entry.get('summary', '') or '').lower()
+    text = title + ' ' + summary
+    keyword_hits = sum(1 for kw in keywords if kw.lower() in text)
+    score += keyword_hits * 5
+
+    # 3. Specificity bonus: entries that list fewer modules are more focused
+    mods = entry.get('related_modules', [])
+    if len(mods) > 0:
+        score += 3.0 / len(mods)
+
+    # 4. Small TRL tiebreaker (prefer more mature, but low weight)
+    trl = entry.get('trl') or 0
+    score += trl * 0.3
+
+    return score
+
 
 def img_to_base64(filename):
     # Prefer cropped JPEG version
@@ -498,10 +585,11 @@ body {
         ments = module_entries.get(mk, [])
         img_fmt, img_b64 = img_to_base64(mod.get('image', ''))
 
-        # Pick top 2 featured entries (prefer highest TRL, diverse categories)
-        sorted_ments = sorted(ments, key=lambda x: (x.get('trl') or 0, x.get('source_year') or 0), reverse=True)
-        featured = sorted_ments[:2]
-        rest = sorted_ments[2:]
+        # Pick top 2 featured entries by context fit (not just TRL)
+        scored = [(context_fit_score(e, mk), e) for e in ments]
+        scored.sort(key=lambda x: x[0], reverse=True)
+        featured = [e for _, e in scored[:2]]
+        rest = [e for _, e in scored[2:]]
 
         html += f"""
 <div class="slide">
