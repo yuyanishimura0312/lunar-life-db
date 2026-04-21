@@ -111,16 +111,16 @@ body {
 
 /* ── Module image slide ── */
 .mod-slide-layout {
-  display: grid; grid-template-columns: 46% 54%; gap: 5mm; flex: 1;
-  min-height: 0; overflow: hidden;
+  display: grid; grid-template-columns: 46% 54%; gap: 5mm;
+  height: 155mm; overflow: hidden;
 }
 .mod-image-area {
   position: relative; border-radius: 3mm; overflow: hidden;
   background: #f5f0eb; display: flex; align-items: center; justify-content: center;
-  min-height: 0;
+  height: 100%;
 }
 .mod-image-area img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 3mm;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 40%; border-radius: 3mm;
 }
 .mod-image-label {
   position: absolute; bottom: 2mm; left: 2mm; right: 2mm;
@@ -128,28 +128,28 @@ body {
   border-radius: 1.5mm; font-size: 7pt; backdrop-filter: blur(4px);
 }
 .mod-right-area {
-  display: flex; flex-direction: column; gap: 2.5mm;
-  min-height: 0; overflow: hidden;
+  display: flex; flex-direction: column; gap: 2mm;
+  height: 100%; overflow: hidden;
 }
 .mod-featured {
-  border: 1.5px solid; border-radius: 3mm; padding: 3.5mm;
+  border: 1.5px solid; border-radius: 2.5mm; padding: 3mm;
   background: #fdfbf9; flex: none;
 }
-.mod-featured-title { font-size: 10pt; font-weight: 700; line-height: 1.3; margin-bottom: 1mm; }
-.mod-featured-summary { font-size: 7.5pt; color: #4a4a4a; line-height: 1.45; }
+.mod-featured-title { font-size: 9.5pt; font-weight: 700; line-height: 1.25; margin-bottom: 1mm; }
+.mod-featured-summary { font-size: 7pt; color: #4a4a4a; line-height: 1.4; }
 .mod-featured-meta { display: flex; gap: 1.5mm; align-items: center; margin-top: 1.5mm; flex-wrap: wrap; }
 .mod-rest-area {
-  flex: 1; border: 1px solid #e8e0d8; border-radius: 2.5mm;
+  flex: 1; border: 1px solid #e8e0d8; border-radius: 2mm;
   padding: 2.5mm; background: #fdfbf9;
-  min-height: 0; overflow: hidden;
+  overflow: hidden;
 }
-.mod-rest-title { font-size: 7.5pt; font-weight: 600; color: #6b5c52; margin-bottom: 1.5mm; }
-.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm; }
+.mod-rest-title { font-size: 7pt; font-weight: 600; color: #6b5c52; margin-bottom: 1.5mm; }
+.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8mm; }
 .mod-rest-item {
-  display: flex; align-items: baseline; gap: 1.5mm;
-  font-size: 6.5pt; line-height: 1.35; padding: 0.3mm 0;
+  display: flex; align-items: baseline; gap: 1mm;
+  font-size: 6pt; line-height: 1.3; padding: 0.2mm 0;
 }
-.mod-rest-dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; flex-shrink: 0; margin-top: 1mm; }
+.mod-rest-dot { width: 1.2mm; height: 1.2mm; border-radius: 50%; flex-shrink: 0; margin-top: 0.8mm; }
 
 /* ── Stats slide ── */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; flex: 1; }
@@ -2007,7 +2007,7 @@ body {
       <div class="mod-right-area">
         <div class="mod-featured" style="border-color:#F8CDAC;">
           <div class="mod-featured-title" style="color:#F8CDAC;">宇宙ステーション水回収システムの微生物制御技術</div>
-          <div class="mod-featured-summary">ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計に重要な知見を提供している。</div>
+          <div class="mod-featured-summary">ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計...</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:#F8CDAC;">衛生</span>
             <span class="badge badge-sm" style="background:#7A4033;">TRL 9</span>
@@ -2035,10 +2035,8 @@ body {
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#966D5E;"></span><span><strong>睡眠・住環境</strong> 月面音響環境制御睡眠チャンバー TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 閉鎖循環型水再生システム TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 概日リズム調節照明システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設計と性... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 月面クルー支援のための音声・視覚統合コミュニケーシ... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F8CDAC;"></span><span><strong>衛生</strong> 宇宙環境における手指衛生と表面消毒技術の評価 TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 36件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 38件</span></div>
           </div>
         </div>
       </div>
@@ -2066,7 +2064,7 @@ body {
       <div class="mod-right-area">
         <div class="mod-featured" style="border-color:#F8CDAC;">
           <div class="mod-featured-title" style="color:#F8CDAC;">宇宙ステーション水回収システムの微生物制御技術</div>
-          <div class="mod-featured-summary">ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計に重要な知見を提供している。</div>
+          <div class="mod-featured-summary">ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計...</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:#F8CDAC;">衛生</span>
             <span class="badge badge-sm" style="background:#7A4033;">TRL 9</span>
@@ -2090,14 +2088,12 @@ body {
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0A671;"></span><span><strong>食</strong> 宇宙食品保存・調理技術の最適化 TRL8</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F8CDAC;"></span><span><strong>衛生</strong> 抗菌素材による月面基地表面コーティング TRL8</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 緊急時水配給システム TRL8</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 宇宙農園での園芸活動が心理的ウェルビーイングに与え... TRL8</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 宇宙農園での園芸活動が心理的ウェルビーイング... TRL8</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F8CDAC;"></span><span><strong>衛生</strong> 月面基地衛生管理プロトコル研究 TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 多言語リアルタイム翻訳システム TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#DC8766;"></span><span><strong>医療</strong> 低重力環境骨密度維持プログラム TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 閉鎖循環型水再生システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 概日リズム調節照明システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設計と性... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 23件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 25件</span></div>
           </div>
         </div>
       </div>
@@ -2151,12 +2147,10 @@ body {
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#966D5E;"></span><span><strong>睡眠・住環境</strong> 月面音響環境制御睡眠チャンバー TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 閉鎖循環型水再生システム TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 概日リズム調節照明システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設計と性... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設... TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F8CDAC;"></span><span><strong>衛生</strong> 宇宙環境における手指衛生と表面消毒技術の評価 TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#DC8766;"></span><span><strong>医療</strong> 月面基地における自律手術ロボットシステムの開発と検... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0A671;"></span><span><strong>食</strong> 昆虫蛋白質循環養殖システム TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面氷採掘・精製統合システム TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 41件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#DC8766;"></span><span><strong>医療</strong> 月面基地における自律手術ロボットシステムの開... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 43件</span></div>
           </div>
         </div>
       </div>
@@ -2211,11 +2205,9 @@ body {
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 多言語リアルタイム翻訳システム TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#966D5E;"></span><span><strong>睡眠・住環境</strong> 月面音響環境制御睡眠チャンバー TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 概日リズム調節照明システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 月面クルー支援のための音声・視覚統合コミュニケーシ... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 月面クルー支援のための音声・視覚統合コミュニ... TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 重力変化対応運動支援ウェア TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 月面VRエンターテインメントシステム TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#966D5E;"></span><span><strong>睡眠・住環境</strong> 月面基地統合ハビタットシステムの環境制御と居住性能... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 41件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 43件</span></div>
           </div>
         </div>
       </div>
@@ -2243,7 +2235,7 @@ body {
       <div class="mod-right-area">
         <div class="mod-featured" style="border-color:#F8CDAC;">
           <div class="mod-featured-title" style="color:#F8CDAC;">宇宙ステーション水回収システムの微生物制御技術</div>
-          <div class="mod-featured-summary">ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計に重要な知見を提供している。</div>
+          <div class="mod-featured-summary">ISS水回収システムにおける微生物制御技術の研究により、銀イオン処理とUV照射の組み合わせが最も効果的であることが実証された。月面基地の水システム設計...</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:#F8CDAC;">衛生</span>
             <span class="badge badge-sm" style="background:#7A4033;">TRL 9</span>
@@ -2272,9 +2264,7 @@ body {
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 多目的重力負荷トレーニング装置COLEUS TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#DC8766;"></span><span><strong>医療</strong> 低重力環境骨密度維持プログラム TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 閉鎖循環型水再生システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設計と性... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 月面クルー支援のための音声・視覚統合コミュニケーシ... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 47件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 49件</span></div>
           </div>
         </div>
       </div>
@@ -2325,15 +2315,13 @@ body {
           <div class="mod-rest-grid">
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 多目的重力負荷トレーニング装置COLEUS TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#DC8766;"></span><span><strong>医療</strong> 低重力環境骨密度維持プログラム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> ISS統合抵抗・有酸素運動トレーニング研究による宇... TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 閉鎖環境における集団娯楽活動が社会的結束に与える影... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> ISS統合抵抗・有酸素運動トレーニング研究に... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 閉鎖環境における集団娯楽活動が社会的結束に与... TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 重力変化対応運動支援ウェア TRL6</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 月面歩行シミュレーション・リハビリシステム TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 月面基地クルーのための最適化運動処方：心肺機能と筋... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 宇宙環境における複合タスク実行時の認知負荷測定シス... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 宇宙居住環境における音楽とゲームの認知的・情動的効... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 月面重力環境における筋力維持のためのフライホイール... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 15件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 月面基地クルーのための最適化運動処方：心肺機... TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 宇宙環境における複合タスク実行時の認知負荷測... TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 17件</span></div>
           </div>
         </div>
       </div>
@@ -2361,7 +2349,7 @@ body {
       <div class="mod-right-area">
         <div class="mod-featured" style="border-color:#EFC4A4;">
           <div class="mod-featured-title" style="color:#EFC4A4;">宇宙農園での園芸活動が心理的ウェルビーイングに与える治療的効果</div>
-          <div class="mod-featured-summary">NASAの研究により、宇宙農園での植物栽培活動が宇宙飛行士の心理的ストレス軽減と生活満足度向上に顕著な効果を示すことが実証。月面基地の農業モジュールにおける娯楽的側面の重要性を科学的に裏付け...</div>
+          <div class="mod-featured-summary">NASAの研究により、宇宙農園での植物栽培活動が宇宙飛行士の心理的ストレス軽減と生活満足度向上に顕著な効果を示すことが実証。月面基地の農業モジュールに...</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:#EFC4A4;">娯楽</span>
             <span class="badge badge-sm" style="background:#7A4033;">TRL 8</span>
@@ -2371,7 +2359,7 @@ body {
         </div>
         <div class="mod-featured" style="border-color:#F0BE83;">
           <div class="mod-featured-title" style="color:#F0BE83;">月面クルー支援のための音声・視覚統合コミュニケーションインターフェース</div>
-          <div class="mod-featured-summary">月面での心理的ストレス軽減を目的とした、AI支援による多感覚コミュニケーションシステムが開発された。自然な対話体験の提供により、クルーの精神的健康維持に大きな効果が確認されている。</div>
+          <div class="mod-featured-summary">月面での心理的ストレス軽減を目的とした、AI支援による多感覚コミュニケーションシステムが開発された。自然な対話体験の提供により、クルーの精神的健康維持...</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:#F0BE83;">通信</span>
             <span class="badge badge-sm" style="background:#7A4033;">TRL 7</span>
@@ -2382,17 +2370,15 @@ body {
         <div class="mod-rest-area">
           <div class="mod-rest-title">その他の関連事例（20件）</div>
           <div class="mod-rest-grid">
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 閉鎖環境における集団娯楽活動が社会的結束に与える影... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 閉鎖環境における集団娯楽活動が社会的結束に与... TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 月面VRエンターテインメントシステム TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 月面基地クルーのための最適化運動処方：心肺機能と筋... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 月面粉塵耐性材料の開発：静電気防止コーティング技術 TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 月面居住における心理的孤立に対する通信システムの影... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> VR環境が長期宇宙滞在における心理的ストレス軽減に... TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 拡張現実技術による宇宙居住環境の空間拡張と心理的開... TRL5</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#B07256;"></span><span><strong>運動</strong> 月面基地クルーのための最適化運動処方：心肺機... TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 月面粉塵耐性材料の開発：静電気防止コーティン... TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0BE83;"></span><span><strong>通信</strong> 月面居住における心理的孤立に対する通信システ... TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> VR環境が長期宇宙滞在における心理的ストレス... TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 拡張現実技術による宇宙居住環境の空間拡張と心... TRL5</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 月面園芸療法プログラム TRL4</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 月面環境対応スマートファブリック技術 TRL4</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 自己修復機能を持つ宇宙服外層材料の開発 TRL4</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 10件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 12件</span></div>
           </div>
         </div>
       </div>
@@ -2430,7 +2416,7 @@ body {
         </div>
         <div class="mod-featured" style="border-color:#EFC4A4;">
           <div class="mod-featured-title" style="color:#EFC4A4;">宇宙農園での園芸活動が心理的ウェルビーイングに与える治療的効果</div>
-          <div class="mod-featured-summary">NASAの研究により、宇宙農園での植物栽培活動が宇宙飛行士の心理的ストレス軽減と生活満足度向上に顕著な効果を示すことが実証。月面基地の農業モジュールにおける娯楽的側面の重要性を科学的に裏付け...</div>
+          <div class="mod-featured-summary">NASAの研究により、宇宙農園での植物栽培活動が宇宙飛行士の心理的ストレス軽減と生活満足度向上に顕著な効果を示すことが実証。月面基地の農業モジュールに...</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:#EFC4A4;">娯楽</span>
             <span class="badge badge-sm" style="background:#7A4033;">TRL 8</span>
@@ -2442,16 +2428,14 @@ body {
           <div class="mod-rest-title">その他の関連事例（21件）</div>
           <div class="mod-rest-grid">
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 閉鎖循環型水再生システム TRL7</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設計と性... TRL7</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面居住モジュール用統合型水管理システムの設... TRL7</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面氷採掘・精製統合システム TRL6</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面農業モジュール向け精密水循環・栄養管理システム TRL6</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#CEA26F;"></span><span><strong>水</strong> 月面農業モジュール向け精密水循環・栄養管理シ... TRL6</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0A671;"></span><span><strong>食</strong> LEDを活用した月面植物工場の最適化研究 TRL6</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0A671;"></span><span><strong>食</strong> 微重力環境下での水耕栽培システム開発 TRL5</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 月面テレロボティクス作業における遅延補償制御システ... TRL5</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#7A4033;"></span><span><strong>作業環境</strong> 月面テレロボティクス作業における遅延補償制御... TRL5</span></div>
             <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#EFC4A4;"></span><span><strong>娯楽</strong> 月面園芸療法プログラム TRL4</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F2C792;"></span><span><strong>衣服</strong> 月面環境対応スマートファブリック技術 TRL4</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#F0A671;"></span><span><strong>食</strong> 月面土壌改良による作物栽培研究 TRL4</span></div>
-            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 11件</span></div>
+            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 13件</span></div>
           </div>
         </div>
       </div>

@@ -247,16 +247,16 @@ body {
 
 /* ── Module image slide ── */
 .mod-slide-layout {
-  display: grid; grid-template-columns: 46% 54%; gap: 5mm; flex: 1;
-  min-height: 0; overflow: hidden;
+  display: grid; grid-template-columns: 46% 54%; gap: 5mm;
+  height: 155mm; overflow: hidden;
 }
 .mod-image-area {
   position: relative; border-radius: 3mm; overflow: hidden;
   background: #f5f0eb; display: flex; align-items: center; justify-content: center;
-  min-height: 0;
+  height: 100%;
 }
 .mod-image-area img {
-  width: 100%; height: 100%; object-fit: cover; border-radius: 3mm;
+  width: 100%; height: 100%; object-fit: cover; object-position: center 40%; border-radius: 3mm;
 }
 .mod-image-label {
   position: absolute; bottom: 2mm; left: 2mm; right: 2mm;
@@ -264,28 +264,28 @@ body {
   border-radius: 1.5mm; font-size: 7pt; backdrop-filter: blur(4px);
 }
 .mod-right-area {
-  display: flex; flex-direction: column; gap: 2.5mm;
-  min-height: 0; overflow: hidden;
+  display: flex; flex-direction: column; gap: 2mm;
+  height: 100%; overflow: hidden;
 }
 .mod-featured {
-  border: 1.5px solid; border-radius: 3mm; padding: 3.5mm;
+  border: 1.5px solid; border-radius: 2.5mm; padding: 3mm;
   background: #fdfbf9; flex: none;
 }
-.mod-featured-title { font-size: 10pt; font-weight: 700; line-height: 1.3; margin-bottom: 1mm; }
-.mod-featured-summary { font-size: 7.5pt; color: #4a4a4a; line-height: 1.45; }
+.mod-featured-title { font-size: 9.5pt; font-weight: 700; line-height: 1.25; margin-bottom: 1mm; }
+.mod-featured-summary { font-size: 7pt; color: #4a4a4a; line-height: 1.4; }
 .mod-featured-meta { display: flex; gap: 1.5mm; align-items: center; margin-top: 1.5mm; flex-wrap: wrap; }
 .mod-rest-area {
-  flex: 1; border: 1px solid #e8e0d8; border-radius: 2.5mm;
+  flex: 1; border: 1px solid #e8e0d8; border-radius: 2mm;
   padding: 2.5mm; background: #fdfbf9;
-  min-height: 0; overflow: hidden;
+  overflow: hidden;
 }
-.mod-rest-title { font-size: 7.5pt; font-weight: 600; color: #6b5c52; margin-bottom: 1.5mm; }
-.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1mm; }
+.mod-rest-title { font-size: 7pt; font-weight: 600; color: #6b5c52; margin-bottom: 1.5mm; }
+.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8mm; }
 .mod-rest-item {
-  display: flex; align-items: baseline; gap: 1.5mm;
-  font-size: 6.5pt; line-height: 1.35; padding: 0.3mm 0;
+  display: flex; align-items: baseline; gap: 1mm;
+  font-size: 6pt; line-height: 1.3; padding: 0.2mm 0;
 }
-.mod-rest-dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; flex-shrink: 0; margin-top: 1mm; }
+.mod-rest-dot { width: 1.2mm; height: 1.2mm; border-radius: 50%; flex-shrink: 0; margin-top: 0.8mm; }
 
 /* ── Stats slide ── */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; flex: 1; }
@@ -531,8 +531,8 @@ body {
             etype = ENTRY_TYPE_JA.get(fe.get('entry_type', ''), '')
 
             html += f"""        <div class="mod-featured" style="border-color:{cat_c};">
-          <div class="mod-featured-title" style="color:{cat_c};">{truncate(fe['title'], 45)}</div>
-          <div class="mod-featured-summary">{truncate(fe.get('summary', ''), 95)}</div>
+          <div class="mod-featured-title" style="color:{cat_c};">{truncate(fe['title'], 40)}</div>
+          <div class="mod-featured-summary">{truncate(fe.get('summary', ''), 75)}</div>
           <div class="mod-featured-meta">
             <span class="badge badge-sm" style="background:{cat_c};">{cat_j}</span>
 """
@@ -551,14 +551,14 @@ body {
           <div class="mod-rest-title">その他の関連事例（{len(rest)}件）</div>
           <div class="mod-rest-grid">
 """
-            for re_entry in rest[:10]:
+            for re_entry in rest[:8]:
                 rc = CATEGORIES.get(re_entry['category'], {}).get('color', '#999')
                 rj = CATEGORIES.get(re_entry['category'], {}).get('ja', '')
                 rtrl = re_entry.get('trl')
                 rtrl_s = f' TRL{rtrl}' if rtrl else ''
-                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:{rc};"></span><span><strong>{rj}</strong> {truncate(re_entry["title"], 25)}{rtrl_s}</span></div>\n'
-            if len(rest) > 10:
-                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 {len(rest)-10}件</span></div>\n'
+                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:{rc};"></span><span><strong>{rj}</strong> {truncate(re_entry["title"], 22)}{rtrl_s}</span></div>\n'
+            if len(rest) > 8:
+                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 {len(rest)-8}件</span></div>\n'
             html += """          </div>
         </div>
 """
