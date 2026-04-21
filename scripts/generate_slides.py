@@ -4,6 +4,7 @@
 import sqlite3
 import json
 import os
+import base64
 from datetime import datetime
 
 DB_PATH = os.path.join(os.path.dirname(__file__), '..', 'data', 'lunar_life.db')
@@ -23,15 +24,17 @@ CATEGORIES = {
 }
 
 MODULES = {
-    'private_room': {'ja': 'プライベートルーム', 'desc': '個人の居住・睡眠空間'},
-    'kitchen_dining': {'ja': 'キッチン&ダイニング', 'desc': '調理・食事・社交空間'},
-    'laboratory': {'ja': 'ラボラトリー', 'desc': '科学研究・分析施設'},
-    'workspace': {'ja': 'ワークスペース', 'desc': '共同作業・オペレーション'},
-    'medical_bay': {'ja': 'メディカルベイ', 'desc': '医療・健康管理施設'},
-    'training_room': {'ja': 'トレーニングルーム', 'desc': '運動・フィットネス施設'},
-    'courtyard': {'ja': 'コートヤード', 'desc': '植物のある共用空間'},
-    'plantation': {'ja': 'プランテーション', 'desc': '食料生産・農業施設'},
+    'private_room': {'ja': 'プライベートルーム', 'desc': '個人の居住・睡眠空間', 'image': 'private_room.png'},
+    'kitchen_dining': {'ja': 'キッチン&ダイニング', 'desc': '調理・食事・社交空間', 'image': 'kitchen_dining.png'},
+    'laboratory': {'ja': 'ラボラトリー', 'desc': '科学研究・分析施設', 'image': 'laboratory.png'},
+    'workspace': {'ja': 'ワークスペース', 'desc': '共同作業・オペレーション', 'image': 'workspace.png'},
+    'medical_bay': {'ja': 'メディカルベイ', 'desc': '医療・健康管理施設', 'image': 'medical_bay.png'},
+    'training_room': {'ja': 'トレーニングルーム', 'desc': '運動・フィットネス施設', 'image': 'training_room.png'},
+    'courtyard': {'ja': 'コートヤード', 'desc': '植物のある共用空間', 'image': 'courtyard.png'},
+    'plantation': {'ja': 'プランテーション', 'desc': '食料生産・農業施設', 'image': 'plantation.png'},
 }
+
+IMG_DIR = os.path.join(os.path.dirname(__file__), '..', 'images')
 
 ENTRY_TYPE_JA = {
     'technology': '技術', 'research': '研究', 'project': 'PJ',
@@ -40,6 +43,20 @@ ENTRY_TYPE_JA = {
 
 SEVERITY_JA = {'critical': '深刻', 'high': '高', 'medium': '中', 'low': '低'}
 SEVERITY_COLOR = {'critical': '#DC8766', 'high': '#B07256', 'medium': '#F0A671', 'low': '#CEA26F'}
+
+
+def img_to_base64(filename):
+    # Prefer cropped JPEG version
+    jpg_name = filename.replace('.png', '.jpg')
+    cropped_path = os.path.join(IMG_DIR, 'cropped', jpg_name)
+    if os.path.exists(cropped_path):
+        with open(cropped_path, 'rb') as f:
+            return 'jpeg', base64.b64encode(f.read()).decode()
+    path = os.path.join(IMG_DIR, filename)
+    if os.path.exists(path):
+        with open(path, 'rb') as f:
+            return 'png', base64.b64encode(f.read()).decode()
+    return '', ''
 
 
 def trl_color(trl):
@@ -195,6 +212,42 @@ body {
 .module-list { font-size: 7pt; line-height: 1.5; flex: 1; }
 .module-list li { list-style: none; padding: 0.5mm 0; display: flex; align-items: baseline; gap: 1.5mm; }
 .module-dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; flex-shrink: 0; margin-top: 1mm; }
+
+/* ── Module image slide ── */
+.mod-slide-layout {
+  display: grid; grid-template-columns: 48% 52%; gap: 4mm; flex: 1; overflow: hidden;
+}
+.mod-image-area {
+  position: relative; border-radius: 3mm; overflow: hidden;
+  background: #f5f0eb; display: flex; align-items: center; justify-content: center;
+}
+.mod-image-area img {
+  width: 100%; height: 100%; object-fit: cover; border-radius: 3mm;
+}
+.mod-image-label {
+  position: absolute; bottom: 2mm; left: 2mm; right: 2mm;
+  background: rgba(26,26,26,0.65); color: #fff; padding: 1.5mm 3mm;
+  border-radius: 1.5mm; font-size: 7pt; backdrop-filter: blur(4px);
+}
+.mod-right-area { display: flex; flex-direction: column; gap: 3mm; overflow: hidden; }
+.mod-featured {
+  border: 1.5px solid; border-radius: 3mm; padding: 4mm;
+  background: #fdfbf9; flex: none;
+}
+.mod-featured-title { font-size: 11pt; font-weight: 700; line-height: 1.3; margin-bottom: 1.5mm; }
+.mod-featured-summary { font-size: 8pt; color: #4a4a4a; line-height: 1.5; }
+.mod-featured-meta { display: flex; gap: 2mm; align-items: center; margin-top: 2mm; flex-wrap: wrap; }
+.mod-rest-area {
+  flex: 1; border: 1px solid #e8e0d8; border-radius: 2.5mm;
+  padding: 3mm; background: #fdfbf9; overflow: hidden;
+}
+.mod-rest-title { font-size: 8pt; font-weight: 600; color: #6b5c52; margin-bottom: 2mm; }
+.mod-rest-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5mm; }
+.mod-rest-item {
+  display: flex; align-items: baseline; gap: 1.5mm;
+  font-size: 7pt; line-height: 1.4; padding: 0.5mm 0;
+}
+.mod-rest-dot { width: 1.5mm; height: 1.5mm; border-radius: 50%; flex-shrink: 0; margin-top: 1.2mm; }
 
 /* ── Stats slide ── */
 .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; flex: 1; }
@@ -402,39 +455,78 @@ body {
 """
         page += 1
 
-    # ━━━ MODULE MAPPING SLIDES (2 slides) ━━━
-    mod_keys = list(MODULES.keys())
-    for mi in range(2):
+    # ━━━ MODULE MAPPING SLIDES (1 slide per module = 8 slides) ━━━
+    for mk, mod in MODULES.items():
+        ments = module_entries.get(mk, [])
+        img_fmt, img_b64 = img_to_base64(mod.get('image', ''))
+
+        # Pick top 2 featured entries (prefer highest TRL, diverse categories)
+        sorted_ments = sorted(ments, key=lambda x: (x.get('trl') or 0, x.get('source_year') or 0), reverse=True)
+        featured = sorted_ments[:2]
+        rest = sorted_ments[2:]
+
         html += f"""
 <div class="slide">
   <div class="accent-bar" style="background:linear-gradient(90deg,#F0A671,#7A4033);"></div>
   <div class="slide-inner">
     <div class="content-header">
-      <h2 style="color:#783c28;">月面基地モジュール別 事例マッピング{'（続き）' if mi > 0 else ''}</h2>
-      <span class="content-sub">JAXA月面基地イメージパースの各モジュールに関連する技術・研究</span>
+      <h2 style="color:#783c28;">{mod['ja']}</h2>
+      <span class="content-sub">{mod['desc']} — {len(ments)}件の関連事例</span>
     </div>
-    <div class="module-grid">
+    <div class="mod-slide-layout">
+      <div class="mod-image-area">
 """
-        for mk in mod_keys[mi*4:(mi+1)*4]:
-            mod = MODULES[mk]
-            ments = module_entries.get(mk, [])
-            html += f"""      <div class="module-card">
-        <h3>{mod['ja']}</h3>
-        <div class="module-desc">{mod['desc']} — {len(ments)}件</div>
-        <ul class="module-list">
-"""
-            for me in ments[:10]:
-                cat_c = CATEGORIES.get(me['category'], {}).get('color', '#999')
-                cat_j = CATEGORIES.get(me['category'], {}).get('ja', '')
-                trl = me.get('trl')
-                trl_s = f' TRL{trl}' if trl else ''
-                html += f'          <li><span class="module-dot" style="background:{cat_c};"></span><span style="font-size:7pt;"><strong>{cat_j}</strong> {truncate(me["title"], 30)}{trl_s}</span></li>\n'
-            if len(ments) > 10:
-                html += f'          <li><span class="module-dot" style="background:#ccc;"></span><span style="color:#999;font-size:7pt;">他 {len(ments)-10}件</span></li>\n'
-            html += """        </ul>
+        if img_b64:
+            html += f'        <img src="data:image/{img_fmt};base64,{img_b64}" alt="{mod["ja"]}">\n'
+        else:
+            html += f'        <div style="font-size:14pt;color:#966D5E;">{mod["ja"]}</div>\n'
+        html += f"""        <div class="mod-image-label">JAXA「Space Life on the Moon」月面基地イメージパース — {mod['ja']}</div>
       </div>
+      <div class="mod-right-area">
 """
-        html += f"""    </div>
+        # Featured entries (2 large cards)
+        for fe in featured:
+            cat_c = CATEGORIES.get(fe['category'], {}).get('color', '#999')
+            cat_j = CATEGORIES.get(fe['category'], {}).get('ja', '')
+            trl = fe.get('trl')
+            org = truncate(fe.get('source_org', ''), 15) or ''
+            etype = ENTRY_TYPE_JA.get(fe.get('entry_type', ''), '')
+
+            html += f"""        <div class="mod-featured" style="border-color:{cat_c};">
+          <div class="mod-featured-title" style="color:{cat_c};">{truncate(fe['title'], 50)}</div>
+          <div class="mod-featured-summary">{truncate(fe.get('summary', ''), 120)}</div>
+          <div class="mod-featured-meta">
+            <span class="badge badge-sm" style="background:{cat_c};">{cat_j}</span>
+"""
+            if trl:
+                html += f'            <span class="badge badge-sm" style="background:{trl_color(trl)};">TRL {trl}</span>\n'
+            html += f'            <span class="badge-outline badge-sm" style="border-color:#966D5E;color:#966D5E;">{etype}</span>\n'
+            if org:
+                html += f'            <span style="font-size:7pt;color:#6b5c52;">{org}</span>\n'
+            html += """          </div>
+        </div>
+"""
+
+        # Rest entries (smaller, 2-column grid)
+        if rest:
+            html += f"""        <div class="mod-rest-area">
+          <div class="mod-rest-title">その他の関連事例（{len(rest)}件）</div>
+          <div class="mod-rest-grid">
+"""
+            for re_entry in rest[:12]:
+                rc = CATEGORIES.get(re_entry['category'], {}).get('color', '#999')
+                rj = CATEGORIES.get(re_entry['category'], {}).get('ja', '')
+                rtrl = re_entry.get('trl')
+                rtrl_s = f' TRL{rtrl}' if rtrl else ''
+                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:{rc};"></span><span><strong>{rj}</strong> {truncate(re_entry["title"], 28)}{rtrl_s}</span></div>\n'
+            if len(rest) > 12:
+                html += f'            <div class="mod-rest-item"><span class="mod-rest-dot" style="background:#ccc;"></span><span style="color:#999;">他 {len(rest)-12}件</span></div>\n'
+            html += """          </div>
+        </div>
+"""
+
+        html += f"""      </div>
+    </div>
   </div>
   {footer(page)}
 </div>
