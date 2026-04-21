@@ -374,45 +374,115 @@ def generate():
 '''
     page += 1
 
-    # ━━━ 3. HISTORY ━━━
-    tl_data = [
-        ('1959', 'Luna 2 — 人類初の月面到達（衝突）'),
-        ('1966', 'Luna 9 — 初の軟着陸、月面写真の撮影に成功'),
-        ('1969', '<strong>Apollo 11 — 人類初の月面歩行</strong>'),
-        ('1972', 'Apollo 17 — 最後の有人ミッション。以後50年以上、人類は月面に立っていない'),
-        ('2007-13', '月面探査の国際化 — かぐや（日）、Chandrayaan-1（印）、Chang\'e-1~3（中）'),
-        ('2019', 'Chang\'e 4 — 人類初の月裏側着陸'),
-        ('2023', 'Chandrayaan-3 南極着陸 / SLIM精密着陸（日本）'),
-        ('2025', '商用月面着陸の幕開け — Firefly Blue Ghost成功、IM-2南極探査'),
-        ('2026', 'Artemis II 月周回飛行完了。商用着陸が加速'),
-        ('2028', '<strong class="hi">Artemis IV — Apollo以来の有人月面着陸（予定）</strong>'),
-        ('2030s', 'Artemis Base Camp建設 / Lunar Cruiser投入 / ILRS基本モデル完成へ'),
-    ]
+    # ━━━ 3. HISTORY — visual timeline ━━━
+    # Eras with background bands + milestone markers
     html += f'''
 <div class="slide">
-  <div class="rule"></div>
+  <div class="rule" style="background:var(--c-warm);"></div>
   <div class="si">
     <div class="ph">
       <div class="ph-kicker">History</div>
       <h2>月面基地に至る人類の歩み</h2>
-      <div class="ph-sub">1959年の最初の月面到達から、2030年代の恒久基地建設へ。半世紀の空白を経て、再び月を目指す時代が始まった。</div>
     </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10mm; flex:1; align-content:start; padding-top:2mm;">
-'''
-    half = 6
-    for col_data in [tl_data[:half], tl_data[half:]]:
-        html += '      <div>\n'
-        for yr, text in col_data:
-            html += f'        <div class="tl"><div class="tl-y">{yr}</div><div class="tl-d" style="background:var(--c-warm);"></div><div class="tl-t">{text}</div></div>\n'
-        html += '      </div>\n'
-    html += f'''    </div>
+
+    <!-- Horizontal axis -->
+    <div style="flex:1; display:flex; flex-direction:column; justify-content:center; gap:0;">
+
+      <!-- Era bands -->
+      <div style="display:grid; grid-template-columns: 22% 6% 28% 44%; height:8mm; margin-bottom:0;">
+        <div style="background:#F3EDE7; border-radius:2mm 0 0 0; display:flex; align-items:center; justify-content:center; font-size:6.5pt; font-weight:600; color:var(--c-muted); letter-spacing:0.08em;">黎明期</div>
+        <div style="background:#EDE5DB; display:flex; align-items:center; justify-content:center; font-size:6.5pt; font-weight:600; color:var(--c-muted);">空白</div>
+        <div style="background:#E7DDD1; display:flex; align-items:center; justify-content:center; font-size:6.5pt; font-weight:600; color:var(--c-muted); letter-spacing:0.08em;">国際探査</div>
+        <div style="background:#DFD3C3; border-radius:0 2mm 0 0; display:flex; align-items:center; justify-content:center; font-size:6.5pt; font-weight:700; color:var(--c-warm); letter-spacing:0.08em;">月面基地時代</div>
+      </div>
+
+      <!-- Axis line -->
+      <div style="position:relative; height:3mm; background:var(--c-warm); margin:0;">
+        <div style="position:absolute; left:4%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:11%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:18%; top:-1.5mm; width:4mm; height:4mm; background:var(--c-warm); border-radius:50%; border:2px solid #fff;"></div>
+        <div style="position:absolute; left:22%; top:-1mm; width:3mm; height:3mm; background:var(--c-muted); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:38%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:50%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:60%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:70%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:78%; top:-1mm; width:3mm; height:3mm; background:var(--c-warm); border-radius:50%; border:1.5px solid #fff;"></div>
+        <div style="position:absolute; left:86%; top:-1.5mm; width:4mm; height:4mm; background:var(--c-text); border-radius:50%; border:2px solid #fff;"></div>
+        <div style="position:absolute; left:95%; top:-1mm; width:3mm; height:3mm; background:var(--c-text); border-radius:50%; border:1.5px solid #fff;"></div>
+      </div>
+
+      <!-- Labels: top row (odd items) -->
+      <div style="display:grid; grid-template-columns: 8% 14% 14% 8% 24% 16% 16%; padding-top:2mm;">
+        <div style="text-align:center;">
+          <div style="font-size:10pt; font-weight:800; color:var(--c-warm);">1959</div>
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4; margin-top:0.5mm;">Luna 2<br>人類初の月面到達</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10pt; font-weight:800; color:var(--c-warm);">1969</div>
+          <div style="font-size:6.5pt; color:var(--c-text); font-weight:600; line-height:1.4; margin-top:0.5mm;">Apollo 11<br>人類初の月面歩行</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10pt; font-weight:800; color:var(--c-warm);">2007-13</div>
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4; margin-top:0.5mm;">月面探査の国際化<br>かぐや・Chang'e・LCROSS</div>
+        </div>
+        <div></div>
+        <div style="text-align:center;">
+          <div style="font-size:10pt; font-weight:800; color:var(--c-warm);">2025</div>
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4; margin-top:0.5mm;">商用月面着陸の幕開け<br>Firefly成功・IM-2南極</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:12pt; font-weight:900; color:var(--c-text);">2028</div>
+          <div style="font-size:7pt; color:var(--c-warm); font-weight:700; line-height:1.4; margin-top:0.5mm;">Artemis IV<br>Apollo以来の有人着陸</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:10pt; font-weight:800; color:var(--c-text);">2030s</div>
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4; margin-top:0.5mm;">Base Camp建設<br>Lunar Cruiser投入</div>
+        </div>
+      </div>
+
+      <!-- Labels: bottom row (even items) -->
+      <div style="display:grid; grid-template-columns: 4% 11% 14% 8% 16% 16% 16% 15%; padding-top:4mm;">
+        <div></div>
+        <div style="text-align:center;">
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4;">Luna 9 — 初の軟着陸</div>
+          <div style="font-size:9pt; font-weight:700; color:var(--c-muted); margin-top:0.5mm;">1966</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4;">Apollo 17 — 最後の有人<br>以後50年の空白</div>
+          <div style="font-size:9pt; font-weight:700; color:var(--c-muted); margin-top:0.5mm;">1972</div>
+        </div>
+        <div></div>
+        <div style="text-align:center;">
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4;">Chang'e 4 月裏側着陸</div>
+          <div style="font-size:9pt; font-weight:700; color:var(--c-warm); margin-top:0.5mm;">2019</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4;">Chandrayaan-3 / SLIM<br>南極着陸・精密着陸</div>
+          <div style="font-size:9pt; font-weight:700; color:var(--c-warm); margin-top:0.5mm;">2023</div>
+        </div>
+        <div style="text-align:center;">
+          <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.4;">Artemis II 月周回完了<br>商用着陸が加速</div>
+          <div style="font-size:9pt; font-weight:700; color:var(--c-warm); margin-top:0.5mm;">2026</div>
+        </div>
+        <div></div>
+      </div>
+
+      <!-- Narrative -->
+      <div style="margin-top:6mm; padding:4mm 5mm; background:var(--c-surface); border-radius:2mm; border-left:2px solid var(--c-warm);">
+        <div style="font-size:8pt; color:var(--c-muted); line-height:1.7;">
+          1969年のApollo 11から1972年のApollo 17まで、12人の人類が月面を歩いた。その後50年以上にわたり、人類は月面に立っていない。
+          2020年代に入り、NASAのArtemis計画、中国のILRS、商用着陸機の相次ぐ成功により、月面は再び人類の活動領域となりつつある。
+          <strong style="color:var(--c-warm);">2028年のArtemis IVは、半世紀の空白を破る歴史的転換点となる。</strong>
+        </div>
+      </div>
+    </div>
   </div>
   {ft(page)}
 </div>
 '''
     page += 1
 
-    # ━━━ 4. ROADMAPS + PROJECTS ━━━
+    # ━━━ 4. ROADMAPS + PROJECTS — Gantt-style ━━━
     html += f'''
 <div class="slide">
   <div class="rule"></div>
@@ -420,52 +490,88 @@ def generate():
     <div class="ph">
       <div class="ph-kicker">Global Landscape</div>
       <h2>各国のロードマップと主要プロジェクト</h2>
-      <div class="ph-sub">2025年は商用着陸が本格化し、2028年には半世紀ぶりの有人着陸が予定されている。政府機関と民間企業が並走する月面開発の全体像。</div>
+      <div class="ph-sub">政府宇宙機関と民間企業が並走する月面開発。2028年の有人着陸に向けて、世界の計画が収束しつつある。</div>
     </div>
-    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:3mm; flex:1;">
-      <div style="display:flex; flex-direction:column; gap:2mm;">
-        <div class="ib ib-line" style="border-color:var(--c-warm); flex:1;">
-          <h4>米国 Artemis計画</h4>
-          <div class="t"><strong>2026</strong> Artemis II 月周回完了<br><strong>2028</strong> <span class="hi">Artemis IV 有人着陸</span><br><strong>2029+</strong> 月面地表基地建設へ転換</div>
-        </div>
-        <div class="ib" style="flex:1;">
-          <h4>SpaceX / Blue Origin</h4>
-          <div class="t">Starship HLS — NASA主契約<br>Blue Moon Mk2 — 4名30日滞在</div>
-        </div>
+
+    <!-- Gantt-style timeline -->
+    <div style="flex:1; display:flex; flex-direction:column; gap:0;">
+      <!-- Year axis -->
+      <div style="display:grid; grid-template-columns: 28% repeat(8, 1fr); height:7mm; border-bottom:1.5px solid var(--c-text); margin-bottom:0;">
+        <div style="font-size:6.5pt; font-weight:600; color:var(--c-muted); display:flex; align-items:flex-end; padding-bottom:1mm;">プログラム / プロジェクト</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2025</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2026</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2027</div>
+        <div style="font-size:7pt; font-weight:900; color:var(--c-warm); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2028</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2029</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2030</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2035</div>
+        <div style="font-size:7pt; font-weight:700; color:var(--c-text); display:flex; align-items:flex-end; justify-content:center; padding-bottom:1mm; border-left:1px solid var(--c-border);">2040</div>
       </div>
-      <div style="display:flex; flex-direction:column; gap:2mm;">
-        <div class="ib ib-line" style="border-color:#8B7355; flex:1;">
-          <h4>中国 ILRS</h4>
-          <div class="t"><strong>2028-29</strong> Chang'e-7/8<br><strong>2035</strong> <span class="hi">ILRS基本モデル完成</span><br>17ヶ国・50+機関が参加</div>
-        </div>
-        <div class="ib ib-line" style="border-color:#7E8B6D; flex:1;">
-          <h4>日本 Lunar Cruiser</h4>
-          <div class="t">Toyota共同開発・与圧ローバ<br>水素燃料電池・航続10,000km<br><strong>2030s初</strong> 月面投入</div>
-        </div>
+'''
+    # Gantt rows: (label, sublabel, start_col, span, color, milestones)
+    gantt = [
+        ('NASA Artemis', '米国', 1, 8, 'var(--c-warm)',
+         [(2,'Artemis II'),(4,'Artemis IV 有人着陸'),(5,'Base Camp建設開始')]),
+        ('SpaceX / Blue Origin', 'HLS', 1, 4, '#9CA3AF',
+         [(3,'HLS軌道テスト'),(4,'Starship月面着陸')]),
+        ('CNSA ILRS', '中国+17ヶ国', 4, 5, '#8B7355',
+         [(4,'Chang\'e-7'),(5,'Chang\'e-8'),(7,'ILRS基本モデル完成')]),
+        ('JAXA Lunar Cruiser', '日本+Toyota', 1, 6, '#7E8B6D',
+         [(1,'開発フェーズ'),(6,'月面投入')]),
+        ('ESA Moonlight', '欧州通信網', 2, 5, '#6E7B7C',
+         [(2,'Pathfinder'),(4,'運用開始'),(6,'5衛星完全運用')]),
+        ('商用着陸 CLPS', 'IM/Firefly/ispace', 1, 3, '#A0896E',
+         [(1,'IM-2 / Firefly'),(2,'Astrobotic / ispace')]),
+        ('ICON Project Olympus', '3D印刷建設', 3, 6, '#B07256',
+         [(4,'プロトタイプ'),(6,'月面建設開始')]),
+        ('ISRO', 'インド', 4, 5, '#9CA3AF',
+         [(8,'有人月面着陸目標')]),
+    ]
+
+    for label, sub, start, span, color, milestones in gantt:
+        html += f'      <div style="display:grid; grid-template-columns: 28% repeat(8, 1fr); min-height:10mm; border-bottom:1px solid var(--c-border);">\n'
+        html += f'        <div style="display:flex; flex-direction:column; justify-content:center; padding:1mm 2mm 1mm 0;">\n'
+        html += f'          <div style="font-size:7.5pt; font-weight:700; color:var(--c-text);">{label}</div>\n'
+        html += f'          <div style="font-size:6pt; color:var(--c-subtle);">{sub}</div>\n'
+        html += f'        </div>\n'
+        # 8 columns for years
+        for col in range(1, 9):
+            is_bar = start <= col < start + span
+            html += f'        <div style="border-left:1px solid var(--c-border); position:relative; display:flex; align-items:center; padding:0 1mm;">'
+            if is_bar:
+                # bar segment
+                is_first = (col == start)
+                is_last = (col == start + span - 1)
+                br = f'{"1mm" if is_first else "0"} {"1mm" if is_last else "0"} {"1mm" if is_last else "0"} {"1mm" if is_first else "0"}'
+                html += f'<div style="position:absolute; top:3mm; bottom:3mm; left:0; right:0; background:{color}; opacity:0.18; border-radius:{br};"></div>'
+                # milestones on this column
+                for m_col, m_text in milestones:
+                    if m_col == col:
+                        html += f'<div style="position:relative; z-index:1; font-size:5.5pt; color:{color}; font-weight:600; line-height:1.3; padding:0 0.5mm;">{m_text}</div>'
+            html += '</div>\n'
+        html += '      </div>\n'
+
+    # 2028 highlight column
+    html += '''
+      <!-- 2028 highlight -->
+      <div style="position:absolute; top:0; bottom:0; left:calc(28% + 3 * 9%); width:9%; background:rgba(120,85,46,0.04); pointer-events:none;"></div>
+'''
+
+    html += f'''    </div>
+
+    <!-- Key projects callout -->
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:4mm; margin-top:3mm;">
+      <div style="padding:3mm; background:var(--c-surface); border-radius:2mm; border-left:2px solid var(--c-warm);">
+        <div style="font-size:7.5pt; font-weight:700; color:var(--c-text); margin-bottom:1mm;">基地建設</div>
+        <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.5;">ICON Project Olympus（3D印刷 / NASA $57M）、Sierra Space LIFE（拡張式ハビタット）、NextSTEPモジュール</div>
       </div>
-      <div style="display:flex; flex-direction:column; gap:2mm;">
-        <div class="ib" style="flex:none;">
-          <h4>商用着陸機（CLPS）</h4>
-          <div class="t" style="font-size:7pt;"><strong>Intuitive Machines</strong> IM-2南極<br><strong>Firefly</strong> Blue Ghost成功<br><strong>Astrobotic</strong> Griffin 2026<br><strong>ispace</strong> APEX 1.0 2026</div>
-        </div>
-        <div class="ib" style="flex:1;">
-          <h4>基地建設技術</h4>
-          <div class="t" style="font-size:7pt;"><strong>ICON Project Olympus</strong><br>3D印刷建設（NASA $57M）<br><br><strong>Sierra Space LIFE</strong><br>拡張式高圧ハビタット</div>
-        </div>
+      <div style="padding:3mm; background:var(--c-surface); border-radius:2mm; border-left:2px solid #7E8B6D;">
+        <div style="font-size:7.5pt; font-weight:700; color:var(--c-text); margin-bottom:1mm;">資源探査 ISRU</div>
+        <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.5;">NASA PRIME-1水氷採掘、VIPERローバ、ESA PROSPECT、Chang'e-8 ISRU実験</div>
       </div>
-      <div style="display:flex; flex-direction:column; gap:2mm;">
-        <div class="ib" style="flex:none;">
-          <h4>欧州 ESA Moonlight</h4>
-          <div class="t">月衛星通信+測位 5衛星<br><strong>2030</strong> 完全運用開始</div>
-        </div>
-        <div class="ib" style="flex:none;">
-          <h4>インド / ロシア / 他</h4>
-          <div class="t" style="font-size:7pt;">ISRO: 2040年有人着陸目標<br>Roscosmos: ILRS共同参加<br>UAE: Gateway参加宣言<br>韓国: 2032年着陸機計画</div>
-        </div>
-        <div class="ib" style="flex:1;">
-          <h4>資源探査 ISRU</h4>
-          <div class="t">NASA PRIME-1 水氷採掘<br>ILRS科学拠点（2035年）</div>
-        </div>
+      <div style="padding:3mm; background:var(--c-surface); border-radius:2mm; border-left:2px solid #6E7B7C;">
+        <div style="font-size:7.5pt; font-weight:700; color:var(--c-text); margin-bottom:1mm;">通信インフラ</div>
+        <div style="font-size:6.5pt; color:var(--c-muted); line-height:1.5;">ESA Moonlight（5衛星網）、NASA LunaNet、Nokia Bell Labs月面5G</div>
       </div>
     </div>
   </div>
