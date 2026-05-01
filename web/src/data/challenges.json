@@ -1,5 +1,27 @@
 [
   {
+    "id": "ch_5bad0676",
+    "name_ja": "月面真空環境の危険性",
+    "name_en": "Lunar Vacuum Environment Hazards",
+    "category": "clothing",
+    "challenge_type": "vacuum",
+    "description": "月面は完全真空。宇宙服やハビタットの微小穿孔が即座に生命の危機に。減圧事故対策と迅速修復技術が必要。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_f3d127ee",
+    "name_ja": "宇宙服可動性の制約",
+    "name_en": "Spacesuit Mobility Constraints",
+    "category": "clothing",
+    "challenge_type": "confined_environment",
+    "description": "与圧宇宙服は関節可動域を大幅に制限。細かい作業が困難で、8時間以上のEVAは身体的に極めて消耗する。疲労骨折のリスクも。",
+    "severity": "medium",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
     "id": "ch_006",
     "name_ja": "通信遅延と地球との隔絶",
     "name_en": "Communication delay and isolation",
@@ -9,6 +31,28 @@
     "severity": "medium",
     "iss_analog": "ISS乗組員はリアルタイム通信が可能",
     "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_fc7abbee",
+    "name_ja": "通信遅延と途絶",
+    "name_en": "Communication Delay and Blackout",
+    "category": "communication",
+    "challenge_type": "communication_delay",
+    "description": "地球-月間の1.3秒往復遅延。月面裏側での通信途絶。緊急時のリアルタイム地球支援が制限される。自律的判断能力が必須。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_1610211f",
+    "name_ja": "通信帯域の制限",
+    "name_en": "Communication Bandwidth Limitations",
+    "category": "communication",
+    "challenge_type": "communication_delay",
+    "description": "月面-地球間の通信帯域は限られており、大容量データ転送には数時間を要する。リアルタイムビデオは低解像度に制限。",
+    "severity": "medium",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
   },
   {
     "id": "ch_004",
@@ -22,6 +66,28 @@
     "created_at": "2026-04-21 08:32:47"
   },
   {
+    "id": "ch_29eeecc4",
+    "name_ja": "閉鎖環境での心理的孤立",
+    "name_en": "Psychological Isolation in Confined Environment",
+    "category": "entertainment",
+    "challenge_type": "isolation",
+    "description": "地球から38万kmの距離と1.3秒の通信遅延。少人数クルーの対人関係ストレス。地球との心理的距離感による鬱・不安。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_14114d0d",
+    "name_ja": "クルー間の対人葛藤",
+    "name_en": "Interpersonal Conflict Among Crew",
+    "category": "entertainment",
+    "challenge_type": "psychological",
+    "description": "少人数の固定メンバーとの閉鎖環境での長期共同生活。文化差、性格の相性、ストレスによる対立。解消手段の限界。",
+    "severity": "medium",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
     "id": "ch_002",
     "name_ja": "低重力環境（1/6G）",
     "name_en": "Low gravity (1/6G)",
@@ -33,6 +99,28 @@
     "created_at": "2026-04-21 08:32:47"
   },
   {
+    "id": "ch_eb489cf4",
+    "name_ja": "低重力（1/6G）による骨密度低下",
+    "name_en": "Bone Density Loss in 1/6G",
+    "category": "exercise",
+    "challenge_type": "microgravity",
+    "description": "月面の低重力環境で骨密度が月1-2%低下。ISS（微小重力）より緩やかだが、長期滞在では深刻。運動・薬物療法での対策が必要。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_a65e3ff1",
+    "name_ja": "低重力での筋萎縮",
+    "name_en": "Muscle Atrophy in Reduced Gravity",
+    "category": "exercise",
+    "challenge_type": "microgravity",
+    "description": "1/6Gでは下肢筋群が地球の60-70%の負荷しか受けない。抗重力筋の萎縮が進行し、EVA作業能力や緊急時対応能力に影響。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
     "id": "ch_008",
     "name_ja": "食料の自給自足",
     "name_en": "Food self-sufficiency",
@@ -42,6 +130,17 @@
     "severity": "high",
     "iss_analog": "ISS Veggie/APH実験での少量栽培",
     "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_98b3a6f5",
+    "name_ja": "長期食料保存と栄養バランス",
+    "name_en": "Long-Term Food Storage and Nutrition",
+    "category": "food",
+    "challenge_type": "resource_scarcity",
+    "description": "宇宙食の賞味期限は最大5年。ビタミンCなど一部栄養素は保存中に劣化。多様な食事が心理的にも不可欠。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
   },
   {
     "id": "ch_003",
@@ -66,6 +165,39 @@
     "created_at": "2026-04-21 08:32:47"
   },
   {
+    "id": "ch_0aca3742",
+    "name_ja": "レゴリスダストの人体毒性",
+    "name_en": "Regolith Dust Toxicity",
+    "category": "hygiene",
+    "challenge_type": "dust",
+    "description": "月面レゴリスの微粒子はナノサイズのガラス質で、吸入すると肺胞に沈着。アポロ飛行士も「月面花粉症」を報告。長期曝露の影響は未知数。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_4572b894",
+    "name_ja": "閉鎖環境での感染症リスク",
+    "name_en": "Infection Risk in Closed Environment",
+    "category": "hygiene",
+    "challenge_type": "confined_environment",
+    "description": "密閉空間での微生物増殖と感染拡大リスク。免疫機能低下が宇宙環境で観察されており、通常は無害な菌が日和見感染を起こす可能性。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_3ed78d1a",
+    "name_ja": "限られた衛生用水での清潔維持",
+    "name_en": "Maintaining Hygiene with Limited Water",
+    "category": "hygiene",
+    "challenge_type": "resource_scarcity",
+    "description": "1日あたりの水使用量を地球の1/100以下に制限する必要。シャワー・洗濯は大幅制限。皮膚トラブルや感染症のリスク増大。",
+    "severity": "medium",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
     "id": "ch_001",
     "name_ja": "宇宙放射線被曝",
     "name_en": "Space radiation exposure",
@@ -75,6 +207,39 @@
     "severity": "critical",
     "iss_analog": "ISS乗組員は約6ヶ月で地上の約100倍の放射線を浴びる",
     "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_ef546071",
+    "name_ja": "宇宙放射線（GCR）の慢性被曝",
+    "name_en": "Chronic GCR Radiation Exposure",
+    "category": "medical",
+    "challenge_type": "radiation",
+    "description": "銀河宇宙線による慢性的な放射線被曝。年間被曝量が地球の約200倍。がんリスク増加と中枢神経系への影響。月面遮蔽でも完全防護は困難。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_146349fc",
+    "name_ja": "太陽粒子イベント（SPE）急性被曝",
+    "name_en": "Solar Particle Event Acute Exposure",
+    "category": "medical",
+    "challenge_type": "radiation",
+    "description": "予測困難な太陽フレアによる急性放射線被曝。数時間で致死量に達する可能性。緊急避難シェルターと早期警報システムが必須。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_36f93e52",
+    "name_ja": "緊急医療対応の制約",
+    "name_en": "Emergency Medical Response Limitations",
+    "category": "medical",
+    "challenge_type": "isolation",
+    "description": "地球への緊急帰還に最低3日。専門医師が常駐しない環境での外傷・急病対応。手術設備と医薬品の制約。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
   },
   {
     "id": "ch_007",
@@ -88,6 +253,28 @@
     "created_at": "2026-04-21 08:32:47"
   },
   {
+    "id": "ch_9cf136a6",
+    "name_ja": "月面の極端な温度環境",
+    "name_en": "Extreme Lunar Temperature Environment",
+    "category": "sleep_habitat",
+    "challenge_type": "thermal",
+    "description": "昼間127℃、夜間-173℃の300℃温度差。永久影クレーターは-230℃。居住区の熱制御と宇宙服の温度管理が生命維持の要。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_b507eb16",
+    "name_ja": "概日リズムの乱れ",
+    "name_en": "Circadian Rhythm Disruption",
+    "category": "sleep_habitat",
+    "challenge_type": "psychological",
+    "description": "月面の29.5日昼夜サイクルは人間の24時間概日リズムと大きく乖離。睡眠障害、認知機能低下、免疫機能異常のリスク。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
     "id": "ch_005",
     "name_ja": "水資源の制約",
     "name_en": "Water resource limitations",
@@ -99,6 +286,17 @@
     "created_at": "2026-04-21 08:32:47"
   },
   {
+    "id": "ch_78327672",
+    "name_ja": "水資源の絶対的希少性",
+    "name_en": "Absolute Water Scarcity",
+    "category": "water",
+    "challenge_type": "resource_scarcity",
+    "description": "地球からの水輸送コストは$1M/kg以上。現地の水氷資源は分布・量が不確定。水リサイクル率98%以上が生存条件。",
+    "severity": "critical",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
     "id": "ch_009",
     "name_ja": "真空環境",
     "name_en": "Vacuum environment",
@@ -108,5 +306,27 @@
     "severity": "critical",
     "iss_analog": null,
     "created_at": "2026-04-21 08:32:47"
+  },
+  {
+    "id": "ch_a6400457",
+    "name_ja": "14日間の月面夜間",
+    "name_en": "14-Day Lunar Night",
+    "category": "work_environment",
+    "challenge_type": "thermal",
+    "description": "月面の夜は14地球日続く。太陽光発電不可、温度急降下、視界ゼロ。原子力電源と蓄電システムが不可欠。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
+  },
+  {
+    "id": "ch_f4c33d8c",
+    "name_ja": "レゴリスの機器への影響",
+    "name_en": "Regolith Effects on Equipment",
+    "category": "work_environment",
+    "challenge_type": "dust",
+    "description": "微細で鋭利な月面ダストがシール、光学系、可動部を摩耗・劣化させる。アポロ計画でもダストによる機器故障が多発。",
+    "severity": "high",
+    "iss_analog": null,
+    "created_at": "2026-05-01 04:31:00"
   }
 ]
