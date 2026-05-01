@@ -1,27 +1,17 @@
 @import "tailwindcss";
 
 :root {
-  /* Miratuku CI Colors */
-  --miratuku-golden-orange: #F0A671;
-  --miratuku-light-beige: #F2C792;
-  --miratuku-warm-beige: #F1C189;
-  --miratuku-camel: #CEA26F;
-  --miratuku-pale-peach: #F8CDAC;
-  --miratuku-sand-gold: #F0BE83;
-  --miratuku-soft-salmon: #EFC4A4;
-  --miratuku-rose-peach: #F7BEA2;
-  --miratuku-terracotta: #DC8766;
-  --miratuku-amber-brown: #B07256;
-  --miratuku-warm-brown: #966D5E;
-  --miratuku-deep-brown: #7A4033;
-
-  --accent: #783c28;
-  --accent-light: #9a5a3e;
-  --bg: #faf8f5;
-  --bg-card: #ffffff;
-  --text: #1a1a1a;
-  --text-muted: #6b5c52;
-  --border: #e8e0d8;
+  /* Space Theme - JAXA Booklet inspired */
+  --accent: #6CB4EE;
+  --accent-light: #8EC8F2;
+  --bg: #0B0F1A;
+  --bg-card: #141929;
+  --bg-surface: #1C2236;
+  --text: #E8ECF2;
+  --text-muted: #8A94A8;
+  --border: #2A3148;
+  --hero-gradient-start: #0B0F1A;
+  --hero-gradient-end: #1A2040;
 }
 
 @theme inline {
@@ -29,26 +19,16 @@
   --color-accent-light: var(--accent-light);
   --color-bg: var(--bg);
   --color-bg-card: var(--bg-card);
+  --color-bg-surface: var(--bg-surface);
   --color-text: var(--text);
   --color-text-muted: var(--text-muted);
   --color-border: var(--border);
-
-  --color-cat-food: #F0A671;
-  --color-cat-water: #CEA26F;
-  --color-cat-hygiene: #F8CDAC;
-  --color-cat-medical: #DC8766;
-  --color-cat-exercise: #B07256;
-  --color-cat-clothing: #F2C792;
-  --color-cat-communication: #F0BE83;
-  --color-cat-entertainment: #EFC4A4;
-  --color-cat-sleep: #966D5E;
-  --color-cat-work: #7A4033;
 }
 
 body {
   background: var(--bg);
   color: var(--text);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
 }
 
 a {
@@ -57,4 +37,64 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+
+/* Star field background for hero */
+.star-field {
+  position: relative;
+  overflow: hidden;
+}
+.star-field::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 50% 10%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 40%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 90% 70%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 20% 80%, rgba(255,255,255,0.2) 0%, transparent 100%),
+    radial-gradient(1px 1px at 60% 90%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 80% 15%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 15% 45%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 45% 75%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 55%, rgba(255,255,255,0.6) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+.star-field > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Category color dots */
+.cat-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+/* Bar chart dark theme */
+.bar-bg {
+  background: var(--bg-surface);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(108, 180, 238, 0.3);
 }

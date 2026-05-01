@@ -4,16 +4,16 @@ export const CATEGORY_CONFIG: Record<
   Category,
   { ja: string; color: string; icon: string }
 > = {
-  food: { ja: "食", color: "#F0A671", icon: "utensils" },
-  water: { ja: "水", color: "#CEA26F", icon: "droplet" },
-  hygiene: { ja: "衛生", color: "#F8CDAC", icon: "sparkles" },
-  medical: { ja: "医療", color: "#DC8766", icon: "heart-pulse" },
-  exercise: { ja: "運動", color: "#B07256", icon: "dumbbell" },
-  clothing: { ja: "衣服", color: "#F2C792", icon: "shirt" },
-  communication: { ja: "通信", color: "#F0BE83", icon: "radio" },
-  entertainment: { ja: "娯楽", color: "#EFC4A4", icon: "gamepad" },
-  sleep_habitat: { ja: "睡眠・住環境", color: "#966D5E", icon: "moon" },
-  work_environment: { ja: "作業環境", color: "#7A4033", icon: "wrench" },
+  food: { ja: "食", color: "#4CAF50", icon: "utensils" },
+  water: { ja: "水", color: "#42A5F5", icon: "droplet" },
+  hygiene: { ja: "衛生", color: "#AB47BC", icon: "sparkles" },
+  medical: { ja: "医療", color: "#EF5350", icon: "heart-pulse" },
+  exercise: { ja: "運動", color: "#FF7043", icon: "dumbbell" },
+  clothing: { ja: "衣服", color: "#78909C", icon: "shirt" },
+  communication: { ja: "通信", color: "#29B6F6", icon: "radio" },
+  entertainment: { ja: "娯楽", color: "#FFCA28", icon: "gamepad" },
+  sleep_habitat: { ja: "睡眠・住環境", color: "#5C6BC0", icon: "moon" },
+  work_environment: { ja: "作業環境", color: "#8D6E63", icon: "wrench" },
 };
 
 export const ENTRY_TYPE_JA: Record<EntryType, string> = {
@@ -45,9 +45,9 @@ export const TRL_STAGE = (trl: number): string => {
 };
 
 export const TRL_COLOR = (trl: number): string => {
-  if (trl <= 3) return "#DC8766"; // terracotta
-  if (trl <= 6) return "#F0A671"; // golden orange
-  return "#7A4033"; // deep brown
+  if (trl <= 3) return "#EF5350"; // early research - red
+  if (trl <= 6) return "#FFA726"; // demonstration - orange
+  return "#66BB6A"; // operational - green
 };
 
 export const MODULE_JA: Record<string, string> = {

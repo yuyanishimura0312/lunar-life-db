@@ -94,23 +94,27 @@ export default function SearchAndFilters({
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="キーワードで検索..."
-          className="flex-1 px-4 py-2 border border-border rounded-lg bg-bg-card text-text focus:outline-none focus:ring-2 focus:ring-accent/30"
+          placeholder="Search entries..."
+          className="flex-1 px-4 py-2 border border-border rounded-lg bg-bg-card text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-1 focus:ring-accent/50 focus:border-accent/50"
         />
         <button
           onClick={() => setShowFilters(!showFilters)}
-          className="px-4 py-2 border border-border rounded-lg bg-bg-card text-text-muted hover:bg-gray-50 transition-colors text-sm"
+          className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
+            showFilters
+              ? "border-accent/50 bg-accent/10 text-accent"
+              : "border-border bg-bg-card text-text-muted hover:border-accent/30"
+          }`}
         >
-          フィルタ {showFilters ? "▲" : "▼"}
+          Filters {showFilters ? "−" : "+"}
         </button>
         <select
           value={sortBy}
           onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
           className="px-3 py-2 border border-border rounded-lg bg-bg-card text-sm text-text"
         >
-          <option value="category">カテゴリ順</option>
-          <option value="trl">TRL高い順</option>
-          <option value="year">年度新しい順</option>
+          <option value="category">Category</option>
+          <option value="trl">TRL (high)</option>
+          <option value="year">Year (new)</option>
         </select>
       </div>
 
@@ -120,7 +124,7 @@ export default function SearchAndFilters({
           {/* Categories */}
           <div>
             <p className="text-xs font-medium text-text-muted mb-2">
-              カテゴリ
+              Category
             </p>
             <div className="flex flex-wrap gap-2">
               {Object.entries(CATEGORY_CONFIG).map(([key, config]) => (
@@ -141,7 +145,9 @@ export default function SearchAndFilters({
                     color: selectedCategories.has(key as Category)
                       ? "white"
                       : config.color,
-                    borderColor: config.color,
+                    borderColor: selectedCategories.has(key as Category)
+                      ? config.color
+                      : config.color + "60",
                   }}
                 >
                   {config.ja}
@@ -152,7 +158,7 @@ export default function SearchAndFilters({
 
           {/* Entry types */}
           <div>
-            <p className="text-xs font-medium text-text-muted mb-2">タイプ</p>
+            <p className="text-xs font-medium text-text-muted mb-2">Type</p>
             <div className="flex flex-wrap gap-2">
               {Object.entries(ENTRY_TYPE_JA).map(([key, label]) => (
                 <button
@@ -164,10 +170,10 @@ export default function SearchAndFilters({
                       setSelectedTypes
                     )
                   }
-                  className={`px-3 py-1 rounded-full text-xs border border-border transition-colors ${
+                  className={`px-3 py-1 rounded-full text-xs border transition-colors ${
                     selectedTypes.has(key as EntryType)
                       ? "bg-accent text-white border-accent"
-                      : "bg-transparent text-text-muted"
+                      : "bg-transparent text-text-muted border-border hover:border-accent/30"
                   }`}
                 >
                   {label}
@@ -178,7 +184,7 @@ export default function SearchAndFilters({
 
           {/* Organizations */}
           <div>
-            <p className="text-xs font-medium text-text-muted mb-2">組織</p>
+            <p className="text-xs font-medium text-text-muted mb-2">Organization</p>
             <div className="flex flex-wrap gap-2">
               {orgs.map((org) => (
                 <button
@@ -186,10 +192,10 @@ export default function SearchAndFilters({
                   onClick={() =>
                     toggleSet(selectedOrgs, org, setSelectedOrgs)
                   }
-                  className={`px-3 py-1 rounded-full text-xs border border-border transition-colors ${
+                  className={`px-3 py-1 rounded-full text-xs border transition-colors ${
                     selectedOrgs.has(org)
                       ? "bg-accent text-white border-accent"
-                      : "bg-transparent text-text-muted"
+                      : "bg-transparent text-text-muted border-border hover:border-accent/30"
                   }`}
                 >
                   {org}
@@ -201,7 +207,7 @@ export default function SearchAndFilters({
           {/* TRL filter */}
           <div>
             <p className="text-xs font-medium text-text-muted mb-2">
-              最低TRL: {trlMin || "指定なし"}
+              Min TRL: {trlMin || "Any"}
             </p>
             <input
               type="range"
@@ -224,14 +230,14 @@ export default function SearchAndFilters({
             }}
             className="text-xs text-accent hover:underline"
           >
-            フィルタをリセット
+            Reset filters
           </button>
         </div>
       )}
 
       {/* Results count */}
       <p className="text-sm text-text-muted mb-4">
-        {filtered.length}件のエントリ
+        {filtered.length} entries
       </p>
 
       {/* Results grid */}
@@ -242,8 +248,8 @@ export default function SearchAndFilters({
       </div>
 
       {filtered.length === 0 && (
-        <div className="text-center py-12 text-text-muted">
-          <p>該当するエントリがありません</p>
+        <div className="text-center py-16 text-text-muted">
+          <p>No matching entries found</p>
         </div>
       )}
     </div>

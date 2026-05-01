@@ -24,11 +24,11 @@ export default function CategoryGrid({ stats }: { stats: Stats }) {
           <Link
             key={key}
             href={`/categories/${key}/`}
-            className="flex flex-col items-center gap-2 p-4 rounded-lg border border-border bg-bg-card hover:shadow-md transition-shadow no-underline group"
+            className="flex flex-col items-center gap-3 p-5 rounded-lg border border-border bg-bg-card hover:border-accent/40 transition-all no-underline group"
           >
             <div
               className="w-10 h-10 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: config.color + "20" }}
+              style={{ backgroundColor: config.color + "18" }}
             >
               <svg
                 viewBox="0 0 24 24"
@@ -41,7 +41,7 @@ export default function CategoryGrid({ stats }: { stats: Stats }) {
             <span className="text-sm font-medium text-text group-hover:text-accent transition-colors">
               {config.ja}
             </span>
-            <span className="text-xs text-text-muted">{count}件</span>
+            <span className="text-xs text-text-muted">{count} entries</span>
           </Link>
         );
       })}
