@@ -62,3 +62,65 @@ export const MODULE_JA: Record<string, string> = {
 };
 
 export const ALL_CATEGORIES = Object.keys(CATEGORY_CONFIG) as Category[];
+
+// NASA/public domain images for each category
+export const CATEGORY_IMAGES: Record<Category, { url: string; alt: string; credit: string }> = {
+  food: {
+    url: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&h=500&fit=crop",
+    alt: "Space agriculture concept",
+    credit: "NASA",
+  },
+  water: {
+    url: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=800&h=500&fit=crop",
+    alt: "Lunar south pole ice",
+    credit: "NASA",
+  },
+  hygiene: {
+    url: "https://images.unsplash.com/photo-1457364559154-aa2644600ebb?w=800&h=500&fit=crop",
+    alt: "Clean room environment",
+    credit: "NASA",
+  },
+  medical: {
+    url: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800&h=500&fit=crop",
+    alt: "Space medical equipment",
+    credit: "NASA",
+  },
+  exercise: {
+    url: "https://images.unsplash.com/photo-1541873676-a18131494184?w=800&h=500&fit=crop",
+    alt: "Astronaut training",
+    credit: "NASA",
+  },
+  clothing: {
+    url: "https://images.unsplash.com/photo-1454789548928-9efd52dc4031?w=800&h=500&fit=crop",
+    alt: "Spacesuit EVA",
+    credit: "NASA",
+  },
+  communication: {
+    url: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=500&fit=crop",
+    alt: "Earth communications network from space",
+    credit: "NASA",
+  },
+  entertainment: {
+    url: "https://images.unsplash.com/photo-1462332420958-a05d1e002413?w=800&h=500&fit=crop",
+    alt: "Stargazing from space",
+    credit: "NASA",
+  },
+  sleep_habitat: {
+    url: "https://images.unsplash.com/photo-1636819488524-1f019c4e1c44?w=800&h=500&fit=crop",
+    alt: "Lunar habitat concept",
+    credit: "NASA",
+  },
+  work_environment: {
+    url: "https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=500&fit=crop",
+    alt: "Lunar surface work",
+    credit: "NASA",
+  },
+};
+
+// Hero and section images
+export const SITE_IMAGES = {
+  hero: "https://images.unsplash.com/photo-1522030299830-16b8d3d049fe?w=1920&h=800&fit=crop",
+  moon_surface: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?w=1920&h=600&fit=crop",
+  iss: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1920&h=600&fit=crop",
+  earth_from_moon: "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=1920&h=600&fit=crop",
+};

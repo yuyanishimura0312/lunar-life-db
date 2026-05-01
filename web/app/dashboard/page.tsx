@@ -1,5 +1,6 @@
+import Image from "next/image";
 import { getStats } from "@/lib/data";
-import { CATEGORY_CONFIG, ENTRY_TYPE_JA } from "@/lib/constants";
+import { CATEGORY_CONFIG, ENTRY_TYPE_JA, SITE_IMAGES } from "@/lib/constants";
 
 function BarChart({
   data,
@@ -60,9 +61,24 @@ export default function DashboardPage() {
   for (let i = 7; i <= 9; i++) trlColors[String(i)] = "#66BB6A";
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
-      <h1 className="text-2xl font-light text-text mb-1 tracking-wide">Dashboard</h1>
-      <p className="text-xs text-text-muted mb-8">データベースの概況</p>
+    <div>
+      {/* Photo header */}
+      <section className="relative h-[200px] overflow-hidden">
+        <Image
+          src={SITE_IMAGES.iss}
+          alt="International Space Station"
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/30" />
+        <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16 pb-6 max-w-6xl mx-auto">
+          <h1 className="text-3xl font-light text-white mb-1 tracking-wide">Dashboard</h1>
+          <p className="text-xs text-white/50">データベースの概況</p>
+        </div>
+      </section>
+
+      <div className="max-w-6xl mx-auto px-4 py-8">
 
       {/* KPI cards */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
@@ -137,6 +153,7 @@ export default function DashboardPage() {
           </h2>
           <BarChart data={stats.by_country} />
         </div>
+      </div>
       </div>
     </div>
   );
