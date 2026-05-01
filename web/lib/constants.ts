@@ -106,8 +106,8 @@ export const CATEGORY_IMAGES: Record<Category, { url: string; alt: string; credi
     credit: "NASA",
   },
   sleep_habitat: {
-    url: "https://images.unsplash.com/photo-1636819488524-1f019c4e1c44?w=800&h=500&fit=crop",
-    alt: "Lunar habitat concept",
+    url: "https://images.unsplash.com/photo-1446776877081-d282a0f896e2?w=800&h=500&fit=crop",
+    alt: "Space station interior habitat",
     credit: "NASA",
   },
   work_environment: {
