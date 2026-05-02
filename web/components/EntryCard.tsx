@@ -30,6 +30,11 @@ export default function EntryCard({ entry }: { entry: Entry }) {
             {ENTRY_TYPE_JA[entry.entry_type]}
           </span>
         )}
+        {entry.quality_score === "verified" && (
+          <span className="inline-block px-2 py-0.5 rounded text-xs bg-green-500/20 text-green-400 shrink-0">
+            Verified
+          </span>
+        )}
       </div>
 
       <h3 className="text-base font-medium text-text group-hover:text-accent transition-colors mb-2 line-clamp-2">

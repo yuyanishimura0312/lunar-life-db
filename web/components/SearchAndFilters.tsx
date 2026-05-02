@@ -27,6 +27,7 @@ export default function SearchAndFilters({
     "category"
   );
   const [showFilters, setShowFilters] = useState(false);
+  const [verifiedOnly, setVerifiedOnly] = useState(false);
 
   const orgs = useMemo(() => {
     const s = new Set<string>();
@@ -69,6 +70,10 @@ export default function SearchAndFilters({
       result = result.filter((e) => e.trl && e.trl >= trlMin);
     }
 
+    if (verifiedOnly) {
+      result = result.filter((e) => e.quality_score === "verified");
+    }
+
     // Sort
     result = [...result].sort((a, b) => {
       if (sortBy === "trl") return (b.trl || 0) - (a.trl || 0);
@@ -78,7 +83,7 @@ export default function SearchAndFilters({
     });
 
     return result;
-  }, [entries, query, selectedCategories, selectedOrgs, selectedTypes, trlMin, sortBy]);
+  }, [entries, query, selectedCategories, selectedOrgs, selectedTypes, trlMin, sortBy, verifiedOnly]);
 
   const toggleSet = <T,>(set: Set<T>, item: T, setter: (s: Set<T>) => void) => {
     const next = new Set(set);
@@ -97,6 +102,17 @@ export default function SearchAndFilters({
           placeholder="Search entries..."
           className="flex-1 px-4 py-2 border border-border rounded-lg bg-bg-card text-text placeholder:text-text-muted/50 focus:outline-none focus:ring-1 focus:ring-accent/50 focus:border-accent/50"
         />
+        <button
+          onClick={() => setVerifiedOnly(!verifiedOnly)}
+          className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
+            verifiedOnly
+              ? "border-green-500/50 bg-green-500/10 text-green-400"
+              : "border-border bg-bg-card text-text-muted hover:border-green-500/30"
+          }`}
+          title="Show only entries with verified source URLs"
+        >
+          Verified
+        </button>
         <button
           onClick={() => setShowFilters(!showFilters)}
           className={`px-4 py-2 border rounded-lg text-sm transition-colors ${
